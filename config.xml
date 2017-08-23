@@ -1,0 +1,235 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.stavyah.glocalpanelv3" 
+version="1.1.1"
+versionCode = "12" 
+xmlns="http://www.w3.org/ns/widgets" 
+xmlns:gap   = "http://phonegap.com/ns/1.0" 
+xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>GLocalPanel</name>
+    <description>
+        An application for GLocalPanel Web App for Panelist.
+    </description>
+    <author email="mangesh@stavyah.com" href="http://www.stavyah.com">
+        Stavyah Technologies LLP
+    </author>
+    
+    <content src="index.html" />
+    
+    <feature name="http://api.phonegap.com/1.0/device" />
+    
+    <preference name="permissions" value="none"/>
+	<preference name="orientation" value="portrait"/>
+	
+	<!-- SplashScreen Preference -->
+	<preference name="SplashScreen" value="screen" />
+	<preference name="SplashScreenDelay" value="3000" />
+	<preference name="FadeSplashScreen" value="false"/>
+  	<!-- <preference name="ShowSplashScreenSpinner" value="false"/> -->
+  	
+  	<!-- Plugins -->
+  	<plugin name="cordova-plugin-splashscreen" spec="4.0.2" source="npm" />
+  	<plugin name="cordova-plugin-whitelist" spec="1.3.1" source="npm" />
+	<plugin name="cordova-plugin-network-information" source="npm" spec="1.3.0" />
+	<plugin name="cordova-plugin-dialogs" source="npm" spec="1.3.1" />
+	<plugin name="cordova-plugin-inappbrowser" source="npm" spec="1.6.1"/>
+	<plugin name="cordova-plugin-device" source="npm" spec="1.1.4"/>
+	<plugin name="cordova-plugin-appversion" source="npm" spec="1.0.0"/>
+	<plugin name="ktekosi-phonegap-plugin-push" source="npm"  spec="1.8.0">
+        <variable name="SENDER_ID" value="987771662647" />
+    </plugin>
+    
+	<!-- 
+	<plugin name="phonegap-plugin-push" source="npm" spec="1.9.2" src="https://github.com/phonegap/phonegap-plugin-push.git" >
+	    <variable name="SENDER_ID" value="987771662647" />
+	 </plugin>
+	 -->
+	<!-- 
+	<preference name="showmessageinnotification" value="true" />
+	<preference name="defaultnotificationmessage" value="New message has arrived!" />
+	  -->
+    <access origin="*"/>
+    <allow-navigation href="*" />
+    
+    <allow-intent href="*" />
+     
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+     
+<!--     <icon src="icon.png"/> -->
+     
+	<!-- <platform name="browser">
+		<preference name="SplashScreen" value="/images/browser/splashscreen.jpg" /> defaults to "/img/logo.png"
+		<preference name="SplashScreenDelay" value="3000" /> defaults to "3000"
+		<preference name="SplashScreenBackgroundColor" value="green" /> defaults to "#464646"
+		<preference name="ShowSplashScreen" value="false" /> defaults to "true"
+		<preference name="SplashScreenWidth" value="600" /> defaults to "170"
+		<preference name="SplashScreenHeight" value="300" /> defaults to "200"
+	</platform> -->
+	
+<!-- 	<splash src="splash.png" />  -->
+    <platform name="android">
+        <allow-intent href="market:*" />
+        <preference name="android-minSdkVersion" value="15"/> 
+ 		<preference name="android-targetSdkVersion" value="25"/>
+ 		<!-- 
+ 		<feature name="PushPlugin">
+			<param name="android-package" value="com.amazon.cordova.plugin.PushPlugin" />
+		</feature>
+
+		<feature name="PushPlugin">
+			<param name="android-package" value="com.plugin.gcm.PushPlugin" />
+		</feature>
+		 -->
+ 		
+ 		<!-- Icons By Resolutions -->
+ 		<icon src="res/android/app_icon_ldpi.png" platform="android" qualifier="ldpi" />
+        <icon src="res/android/app_icon_mdpi.png" platform="android" qualifier="mdpi" />
+        <icon src="res/android/app_icon_hdpi.png" platform="android" qualifier="hdpi" />
+        <icon src="res/android/app_icon_xhdpi.png" platform="android" qualifier="xhdpi" />
+      	
+      	<!-- Icons By Resolutions -->
+      	<splash  src="res/android/splash_port_hdpi.png" platform="android" qualifier="port-hdpi" />
+ 		<splash  src="res/android/splash_port_ldpi.png" platform="android" qualifier="port-ldpi" />
+        <splash  src="res/android/splash_port_mdpi.png" platform="android" qualifier="port-mdpi" />
+        <splash  src="res/android/splash_port_xhdpi.png" platform="android" qualifier="port-xhdpi" />
+      	
+		<splash  src="res/android/splash_land_hdpi.png" platform="android" qualifier="land-hdpi" />
+ 		<splash  src="res/android/splash_land_ldpi.png" platform="android" qualifier="land-ldpi" />
+        <splash  src="res/android/splash_land_mdpi.png" platform="android" qualifier="land-mdpi" />
+        <splash  src="res/android/splash_land_xhdpi.png" platform="android" qualifier="land-xhdpi" />
+        
+        <splash  src="res/android/splash_default.png"/>
+        
+        <feature name="InAppBrowser">
+			<param name="android-package" value="org.apache.cordova.InAppBrowser" />
+		</feature>
+        
+ 		<!-- <plugin name="cordova-plugin-push-notification" source="npm" spec="2.5.2" /> -->
+    </platform>
+    
+    
+    <platform name="ios">
+		<allow-intent href="itms:*" />
+		<allow-intent href="itms-apps:*" />
+		
+		<feature name="NetworkStatus">
+	    	<param name="ios-package" value="CDVConnection" />
+		</feature>
+		
+		<feature name="InAppBrowser">
+    		<param name="ios-package" value="CDVInAppBrowser" />
+		</feature>
+		
+		<feature name="PushNotification">
+	    	<param name="ios-package" value="PushPlugin"/>
+	    </feature>
+	    
+		
+		<!-- IOS -->
+		<!-- 
+		<preference name="EnableViewportScale" value="true"/>
+		<preference name="KeyboardDisplayRequiresUserAction" value="false"/>
+		<preference name="SuppressesIncrementalRendering" value="true"/>
+		<preference name="PageLength" value="0"/>
+		<preference name="MediaPlaybackRequiresUserAction" value="true"/>
+		<preference name="AllowInlineMediaPlayback" value="true"/>
+		<preference name="UIWebViewDecelerationSpeed" value="fast"/>
+		<preference name="PaginationBreakingMode" value="page"/>
+		<preference name="PaginationMode" value="unpaginated"/>
+		 -->
+		
+		<!-- <preference name="iosPersistentFileLocation" value="Library" /> -->
+		<!-- Avoid iCloud backup -->
+		<!-- <preference name="BackupWebStorage" value="none" /> -->
+		
+		 <icon src="icon.png"/>
+		 
+		<icon src="res/icon/ios/icon-60@3x.png" platform="ios" width="180" height="180" />
+
+		<!-- iPhone 6 / 6+ -->
+		<icon src="res/icon/icon-60@3x.png" platform="ios" width="180" height="180" />
+		
+		<!-- iPhone / iPod Touch  -->
+		<icon src="res/icon/icon-60.png" platform="ios" width="60" height="60" />
+		<icon src="res/icon/icon-60@2x.png" platform="ios" width="120" height="120" />
+		
+		<!-- iPad -->
+		<icon src="res/icon/icon-76.png" platform="ios" width="76" height="76" />
+		<icon src="res/icon/icon-76@2x.png" platform="ios" width="152" height="152" />
+		<icon src="res/icon/icon-83.5@2x.png" platform="ios" width="167" height="167" />
+		
+		<!-- Settings Icon -->
+		<icon src="res/icon/icon-small.png" platform="ios" width="29" height="29" />
+		<icon src="res/icon/icon-small@2x.png" platform="ios" width="58" height="58" />
+		<icon src="res/icon/icon-small@3x.png" platform="ios" width="87" height="87" />
+		
+		<!-- Spotlight Icon -->
+		<icon src="res/icon/icon-40.png" platform="ios" width="40" height="40" />
+		<icon src="res/icon/icon-40@2x.png" platform="ios" width="80" height="80" />
+		<icon src="res/icon/icon-40@3x.png" platform="ios" width="120" height="120" />
+		
+		<!-- iPad -->
+		<icon src="res/icon/icon-72.png" platform="ios" width="72" height="72" />
+		<icon src="res/icon/icon-72@2x.png" platform="ios" width="144" height="144" />
+		
+		<!-- iPad Spotlight and Settings Icon -->
+		<icon src="res/icon/icon-50.png" platform="ios" width="50" height="50" />
+		<icon src="res/icon/icon-50@2x.png" platform="ios" width="100" height="100" />
+		
+		<!-- iPhone / iPod Touch -->
+		<icon src="res/icon/icon.png" platform="ios" width="57" height="57" />
+		<icon src="res/icon/icon@2x.png" platform="ios" width="114" height="114" />
+		
+		<!-- iPhone Spotlight and Settings Icon -->
+		<icon src="res/icon/icon-small.png" platform="ios" width="29" height="29" />
+		<icon src="res/icon/icon-small@2x.png" platform="ios" width="58" height="58" />
+		
+		<!-- iPhone and iPod touch -->
+		<!-- <splash src="Default.png" platform="ios" width="320" height="480" />
+		<splash src="Default@2x.png" platform="ios" width="640" height="960" /> -->
+
+		<!-- iPhone 5 / iPod Touch (5th Generation) -->
+		<!-- <splash src="Default-568h@2x.png" platform="ios" width="640" height="1136" /> -->
+		
+		<!-- iPhone 6 -->
+		<!-- <splash src="Default-667h@2x.png" platform="ios" width="750" height="1334" />
+		<splash src="Default-Portrait-736h@3x.png" platform="ios" width="1242" height="2208" />
+		<splash src="Default-Landscape-736h@3x.png" platform="ios" width="2208" height="1242" /> -->
+		
+		<!-- iPad -->
+		<!-- <splash src="Default-Portrait.png" platform="ios" width="768" height="1024" />
+		<splash src="Default-Landscape.png" platform="ios" width="1024" height="768" /> -->
+		
+		<!-- Retina iPad -->
+		<!-- <splash src="Default-Portrait@2x.png" platform="ios" width="1536" height="2048" />
+		<splash src="Default-Landscape@2x.png" platform="ios" width="2048" height="1536" />
+		
+		<splash src="splash/ios/Default-568h@2x~iphone.png" platform="ios" width="320" height="480" /> -->
+		
+		<splash src="res/screen/ios/Default~iphone.png" width="320" height="480"/>
+	    <splash src="res/screen/ios/Default@2x~iphone.png" width="640" height="960"/>
+	    <splash src="res/screen/ios/Default-Portrait~ipad.png" width="768" height="1024"/>
+	    <splash src="res/screen/ios/Default-Portrait@2x~ipad.png" width="1536" height="2048"/>
+	    <splash src="res/screen/ios/Default-Landscape~ipad.png" width="1024" height="768"/>
+	    <splash src="res/screen/ios/Default-Landscape@2x~ipad.png" width="2048" height="1536"/>
+	    <splash src="res/screen/ios/Default-568h@2x~iphone.png" width="640" height="1136"/>
+	    <splash src="res/screen/ios/Default-667h.png" width="750" height="1334"/>
+	    <splash src="res/screen/ios/Default-736h.png" width="1242" height="2208"/>
+	    <splash src="res/screen/ios/Default-Landscape-736h.png" width="2208" height="1242"/>
+		
+		<!-- 
+	    <splash src="res/screen/ios/Default@2x~universal~anyany.png" />
+	    <splash src="res/screen/ios/Default@2x~universal~comany.png" />
+	    <splash src="res/screen/ios/Default@2x~universal~comcom.png" />
+	    <splash src="res/screen/ios/Default@3x~universal~anyany.png" />
+	    <splash src="res/screen/ios/Default@3x~universal~anycom.png" />
+	    <splash src="res/screen/ios/Default@3x~universal~comany.png" /> 
+	    -->
+		
+	</platform>
+	
+</widget>

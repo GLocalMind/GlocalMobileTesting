@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport"
+			content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, target-densitydpi=medium-dpi" />
+		<!-- Android Working -->
+		<!-- <meta http-equiv="Content-Security-Policy"
+			content="default-src *; script-src * 'unsafe-eval' 'unsafe-inline'; connect-src *; img-src *; style-src * 'unsafe-inline' ; media-src *;">
+		 -->
+		<!-- IOS Working -->
+		<meta http-equiv="Content-Security-Policy" 
+			content="img-src * 'self' data:; default-src * 'self' gap: wss: ws: ; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval';">	
+			
+		<title>GLocalPanel</title>
+		
+		<link rel="stylesheet"
+			href="libs/jQueryMobile/jquery.mobile-1.4.5.min.css">
+		<link rel="stylesheet" type="text/css" href="css/flexboxgrid.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" href="css/fontawesome/css/font-awesome.min.css" />
+		<!-- <link rel="stylesheet" href="css/fontawesome/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/fontawesome/css/bootstrap-theme.min.css" /> -->
+
+	</head>
+
+	<body>
+		<div data-role="page" id="login-page">
+			<div data-role="header" data-position="fixed">
+				<div id="header" class="header-logo">
+					<img  src="img/logo.png" id="logo" alt="Glocal Panel" /> 
+				</div>
+			</div>
+			<div role="main" class="ui-content">		
+				<div id="app">		
+					<!-- Login Page content-->	
+					<div class="login-page" >
+						<h1>User Login</h1>
+						<div class="form-container loginFormContainer ">
+							<form id="loginForm" action="">
+								<div class="form-group input-label-focus">							
+									<span class="input-group-addon" ><i class="fa fa-user"></i></span>	
+									<label for="username" class="control-label">Username<em>*</em></label>						  	
+									<input type="email" class="form-control focusClass" data-mini="true" name="username" id="username" placeholder="Username" required="required" />
+									<div class="validation-place"></div>
+								</div>
+								<div class="form-group input-label-focus">
+									<label for="password" class="control-label">Password<em>*</em> </label>
+									<span class="input-group-addon" id="basic-addon1"><i class="fa fa-lock"></i></span>			
+									<input type="password" class="form-control focusClass" data-mini="true" name="password" id="password" placeholder="Password" required="required" autocomplete="off" required />
+									<div class="validation-place"></div>
+								</div>
+								<div class="forgot-password">
+									<a href="#" onclick="gotoForgotPassword();">Forgot Password?</a>
+								</div>						
+								<button data-role="button" data-inline="false" data-theme="a" id="submitButton">Login</button>
+							</form>
+						</div>
+						<div class="hm-joinnow">
+							<button  data-role="button" data-inline="false" data-theme="b" onclick="gotoRegistrationPage();">Join Now</button>
+						</div>
+						<div class="">
+							<button class="contactUsLogin" data-role="button" data-inline="false" data-theme="c" onclick="gotoContactUsPage();"> Contact Us </button>
+						</div>
+						<div class="hm-footer">
+							<p class="versionId">v1.0.4</p>
+							<a href="#" onclick="openInAppBrowser(this);" data-linktype="1" data-urllink="http://www.glocalpanel.com/user/privacyPolicy.do">Privacy Policy</a>
+							<br/>
+							<p class="copyRightClass">Copyright ©2017 GLocalPanel.com. All rights reserved.</p>
+						</div>				
+					</div>
+					<!-- Login Page content End-->	
+				</div>
+			</div>
+		</div>
+		<!-- Login Page End-->	
+		<!-- Dashboard Home Page -->
+		<div id="dashboardPage" data-role="page" class="physician-dashboard" >	
+			<div role="main" class="ui-content">		
+				<div class="st-background">
+						<div id="dashboardPageId" >						
+							<div class="dashboard-info" onclick="commonFn();">
+								<img  src="img/logo.png" id="logo" alt="Glocal Panel" /> 
+								<h3 class="physician-name" id="physicianName">Physician Name</h3>
+								<p class="physician-priSpeciality"> ---- </p>
+							
+								<p class="physician-mailId"> ---- </p>
+							</div>
+							
+							<div class="row incentive-info" onclick="commonFn();">
+								<div class="col-gp col-xs-4 col-sm-4 col-md-4 col-lg-4 rewardsUsersIcons class-display-none">
+									<div class="incentive-icon">
+										<span  class="total-incentive-icon"><span class="calculationIcon">-</span></span>
+										<label>
+											
+											Total <br/> Incentives 
+										</label>
+										<p id="totalIncentives">0</p>
+									</div>
+								</div>
+								<div class="col-gp col-xs-4 col-sm-4 col-md-4 col-lg-4 rewardsUsersIcons class-display-none">
+									<div class="incentive-icon">
+										<span  class="used-incentive-icon"><span class="calculationIcon">=</span><!-- <i class="fa fa-minus"></i> --></span>
+										
+										<label>  
+											
+											Used <br/> Incentives
+										</label>
+										<p id="usedIncentives">0</p>
+									</div>
+									
+								</div>
+								
+								<div class="col-gp col-xs-4 col-sm-4 col-md-4 col-lg-4 rewardsUsersIcons class-display-none">
+									<div class="incentive-icon onlineRewardsOnClick">
+										<span  class="ready-redeem-icon"><!-- <i class="fa fa-plus"></i> --></span>
+										<label>Ready to <br/> Redeem </label><p id="earnedIncentives">0</p>
+									</div>
+								</div>
+								<div style="text-align: center;" class="col-gp col-xs-12 col-sm-12 col-md-12 col-lg-12 rewardsUsersIcons class-display-none">
+									<button data-role="button" data-inline="false" data-theme="a" class="redeemLinkClass">Redeem</button>
+									<button data-role="button" onclick="gotoRedeemHistory()" data-inline="false" data-theme="b" class="redeemHistoryClass">Redemption history</button>
+								</div>
+								<div class="col-gp col-xs-6 col-sm-6 col-md-6 col-lg-6 nonRewardsUsersIcons class-display-none">
+									<div class="incentive-icon">
+										<span  class="total-incentive-icon"></span>
+										<label>Total Incentives </label><p id="totalIncenPhy">0</p>
+									</div>
+								</div>
+								<div class="col-gp col-xs-6 col-sm-6 col-md-6 col-lg-6 nonRewardsUsersIcons class-display-none">
+									<div class="incentive-icon">
+										<span  class="missed-incentive-icon"></span>
+										<label>Missed  Incentives </label><p id="missedIncenPhy">0</p>
+									</div>
+								</div>
+								
+								<!--
+								<div class="col-gp col-xs-4 col-sm-4 col-md-4 col-lg-4 onlineRewardsUsers">
+									<div class="incentive-icon">
+										<span  class="incentives-icon"></span>
+										<label>Total Incentives </label><p id="totalIncentives">200</p>
+									</div>
+								</div>
+								
+								<div class="col-gp col-xs-4 col-sm-4 col-md-4 col-lg-4 onlineRewardsUsers">
+									<div class="incentive-icon onlineRewardsOnClick" >
+									<span  class="incentives-icon"><i class="fa fa-plus"></i></span>
+									<label>Ready to Redeem </label><p id="earnedIncentives">200</p>
+									</div>
+								</div>
+								<div class="col-gp col-xs-4 col-sm-4 col-md-4 col-lg-4 onlineRewardsUsers">
+									<div class="incentive-icon">
+										<span  class="incentives-icon"><i class="fa fa-minus"></i></span>
+										<label> Used  Incentives </label><p id="usedIncentives">80</p>
+									</div>
+								</div>
+								-->
+								<!-- <div class="col-gp col-xs-4 col-sm-4 col-md-4 col-lg-4 onlineRewardsUsers">
+									<label>Total <br/> Incentives </label><p id="earnedIncentives">200</p>
+								</div>
+								<div class="col-gp col-xs-4 col-sm-4 col-md-4 col-lg-4 onlineRewardsUsers">
+									<label>Ready to <br/> Redeem </label><p id="usedIncentives">80</p>
+								</div> -->
+							</div>
+									
+							<!-- <div class="bottom-navigation">
+								<div class="setting-popup">
+									<button  data-role="button" data-inline="false" data-theme="a" onclick="doLogout(this);">
+										<span class=""></span><p>Logout</p>
+									</button>	
+									<button  data-role="button" data-inline="false" data-theme="a" onclick="gotoUnsubscribePage(this);">
+										<span class=""></span><p>Unsubscribe</p>
+									</button>
+									<button  data-role="button" data-inline="false" data-theme="a" onclick="gotoContactUsPage(this);">
+										<span class=""></span><p>Contact Us</p>
+									</button>
+								</div>
+								<div class="row text-align-class">
+									<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="showSurveysByTypeFn(1);">
+										<button class="nav-btn nav-btn1  btn-survey"><span class="span-icon"></span><p>Survey</p></button>
+									</div>
+									<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoShowProfilePage(false, 1);">
+										<button class="nav-btn nav-btn2 btn-profile"><span class="span-icon"></span><p>Profile</p></button>
+									</div>
+									<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoChangePassword();">
+										<button class="nav-btn nav-btn3 btn-password"><span class="span-icon"></span><p>Password</p></button>
+									</div>
+									<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="settingPopupFn();">
+										<button class="nav-btn nav-btn4 btn-setting"><span class="span-icon"></span><p>Setting</p></button>
+									</div>
+								</div>
+							</div> -->
+						</div>
+				</div>
+			</div>
+			<div data-role="footer" data-position="fixed" data-tap-toggle="false" data-transition="none">
+				<div class="bottom-navigation">
+					<div class="setting-popup">
+						<button  data-role="button" class="width-class" data-inline="false" data-theme="a" onclick="doLogout(this);">
+							<span class=""></span><p>Logout</p>
+						</button>	
+						<button  data-role="button" data-inline="false" class="width-class" data-theme="a" onclick="gotoUnsubscribePage(this);">
+							<span class=""></span><p>Unsubscribe</p>
+						</button>
+						<button  data-role="button" data-inline="false" class="width-class" data-theme="a" onclick="gotoContactUsPage(this);">
+							<span class=""></span><p>Contact Us</p>
+						</button>
+					</div>
+					<div class="row text-align-class">
+						<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="showSurveysByTypeFn(1);">
+							<button class="nav-btn nav-btn1 width-class btn-survey"><span class="span-icon"></span><p>Surveys</p></button>
+						</div>
+						<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoShowProfilePage(false, 1);">
+							<button class="nav-btn nav-btn2 width-class btn-profile"><span class="span-icon"></span><p>Profile</p></button>
+						</div>
+						<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoChangePassword();">
+							<button class="nav-btn nav-btn3 width-class btn-password"><span class="span-icon"></span><p>Password</p></button>
+						</div>
+						<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="settingPopupFn();">
+							<button class="nav-btn nav-btn4 width-class btn-setting"><span class="span-icon"></span><p>Setting</p></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="showSurveys" data-role="page" class="show-Surveys">
+			<div data-role="header" onclick="commonFn();" data-position="fixed">
+				<div id="header" class="header-logo">
+					<img  src="img/logo.png" id="logo" alt="Glocal Panel" /> 
+				</div>
+			</div>
+			<div role="main" class="ui-content">	
+				<div class="st-background">
+						<div id="showSurveysPageId">
+							<div class="page-heading" onclick="commonFn();">
+								<h1 id="inviteSurveysHeading">Invitations</h1>
+								<h1 id="liveSurveysHeading">Live Surveys</h1>
+								<h1 id="completedSurveysHeading">Completed</h1>
+								<h1 id="nonPartSurveysHeading">Not Participated</h1>
+								<h1 id="needToLaunchHeading">Need to Launch</h1>
+							</div>
+							<div class="row" onclick="commonFn();">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<div class="box">
+										<div class="row inviteSurveysClass survey-details">
+											<ul class="survey-list-view">
+												<li><p>No survey found.</p></li>
+											</ul>
+										</div>
+										<div class="row liveSurveysClass survey-details">
+											<ul class="survey-list-view">
+												<li><p>No survey found.</p></li>
+											</ul>
+										</div>
+										<div class="row completedSurveysClass survey-details">
+											<ul class="survey-list-view">
+												<li><p>No survey found.</p></li>
+											</ul>
+										</div>
+										<div class="row nonPartSurveysClass survey-details">
+											<ul class="survey-list-view">
+												<li><p>No survey found.</p></li>
+											</ul>
+										</div>
+										<div class="row needToLaunchClass survey-details"></div>
+									</div>
+								</div>
+							</div>
+							
+							<!-- <div class="bottom-navigation">
+								<div class="row text-align-class">
+									<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoHomePage();">
+										<button class="nav-btn nav-btn5  btn-home"><span class="span-icon"></span><p>Home</p></button>
+									</div>
+									<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="showSurveysByTypeFn(1);">
+										<button class="nav-btn nav-btn6 btn-profile"><span class="span-icon"></span><p>Invitation</p></button>
+									</div>
+									<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="showSurveysByTypeFn(2);">
+										<button class="nav-btn nav-btn1 btn-password"><span class="span-icon"></span><p>Live Surveys</p></button>
+									</div>
+									<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="showSurveysByTypeFn(3);">
+										<button class="nav-btn nav-btn7 btn-setting"><span class="span-icon"></span><p>Completed</p></button>
+									</div>
+									<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="showSurveysByTypeFn(4);">
+										<button class="nav-btn nav-btn8 btn-setting"><span class="span-icon"></span><p>Missed</p></button>
+									</div>
+								</div>
+							</div> -->
+							
+						</div>
+				</div>
+			</div>
+			<div data-role="footer" data-position="fixed" data-tap-toggle="false" data-transition="none">
+				<div class="bottom-navigation">
+					<div class="row text-align-class">
+						<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoHomePage();">
+							<button class="nav-btn nav-btn5 width-class btn-home"><span class="span-icon"></span><p>Home</p></button>
+						</div>
+						<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="showSurveysByTypeFn(1);">
+							<button class="nav-btn nav-btn6 width-class btn-profile"><span class="span-icon"></span><p>Invitation</p></button>
+						</div>
+						<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="showSurveysByTypeFn(2);">
+							<button class="nav-btn nav-btn1 width-class btn-password"><span class="span-icon"></span><p>LiveSurvey</p></button>
+						</div>
+						<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="showSurveysByTypeFn(3);">
+							<button class="nav-btn nav-btn7 width-class btn-setting"><span class="span-icon"></span><p>Completed</p></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- Registration Page -->
+		
+		<div id="registrationPage" data-role="page" class="registration-page">
+			<div data-role="header" data-position="fixed">
+				<div id="header" class="header-logo">
+					<a href="#"	class="ui-btn-left ui-btn ui-btn-inline ui-mini back-bttn" onclick="onBackKeyDown();"><i class="fa fa-arrow-left"></i></a>
+					<img  src="img/logo.png" id="logo" alt="Glocal Panel" /> 
+				</div>
+			</div>
+			<div role="main" class="ui-content">
+				<div class="st-background">
+					<div id="registrationPageId">
+						<div class="page-heading">
+							<h1>Join Now</h1>
+						</div>
+						<form id="registrationPageForm">
+							<div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group input-label-focus">								
+									<div class="input-group box">
+										<span class="input-group-addon" ></span>	
+										<label for="firstNameInput" class="control-label">First Name<em>*</em></label>						  	
+										<input type="text" class="form-control focusClass" data-mini="true" name="firstNameInput" id="firstNameInput" placeholder="First name" required="required" />
+										<div class="validation-place"></div>
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group input-label-focus">								
+									<div class="input-group box">
+										<span class="input-group-addon" ></span>	
+										<label for="middleNameInput" class="control-label">Middle Name</label>						  	
+										<input type="text" class="form-control focusClass" name="middleNameInput" id="middleNameInput" placeholder="Middle name" />
+										<div class="validation-place"></div>
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group input-label-focus">								
+									<div class="input-group box">
+										<span class="input-group-addon" ></span>	
+										<label for="lastNameInput" class="control-label">Last Name<em>*</em></label>						  	
+										<input type="text" class="form-control focusClass" data-mini="true" name="lastNameInput" id="lastNameInput" placeholder="Last name" required="required" />
+										<div class="validation-place"></div>
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group input-label-focus">								
+									<div class="input-group box">
+										<span class="input-group-addon" ></span>	
+										<label for="primaryNumberInput" class="control-label">Telephone Number</label>						  	
+										<input type="text" class="form-control focusClass" name="primaryNumberInput" id="primaryNumberInput" placeholder="Telephone number" />
+										<div class="validation-place"></div>
+									</div>
+								</div>
+							</div>
+							<div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group input-label-focus">								
+									<div class="input-group box">
+										<span class="input-group-addon" ></span>	
+										<label for="emailIdInput" class="control-label">Email Id<em>*</em></label>						  	
+										<input type="email" class="form-control focusClass" name="emailIdInput" id="emailIdInput" placeholder="Email Id" />
+										<div class="validation-place"></div>
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group input-label-focus">								
+									<div class="input-group box">
+										<span class="input-group-addon" ></span>	
+										<label for="primarySpecialityInput" class="control-label">Primary Speciality<em>*</em></label>						  	
+										<select	name="primarySpecialityInput" id="primarySpecialityInput" data-mini="true" required="required" onchange="onchangePriSpelty(0);" class="form-control focusClass">
+											<option value="">--Select Primary Speciality--</option>
+										</select>
+										<div class="validation-place"></div>
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group input-label-focus">								
+									<div class="input-group box">
+										<span class="input-group-addon" ></span>	
+										<label for="secondarySpecialityInput" class="control-label">Secondary Speciality<em>*</em></label>						  	
+										<select	name="secondarySpecialityInput" id="secondarySpecialityInput" data-mini="true" required="required" class="form-control focusClass">
+											<option value="">--Select Secondary Speciality--</option>
+										</select>
+										<div class="validation-place"></div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group input-label-focus">								
+									<div class="input-group box">
+										<span class="input-group-addon" ></span>	
+										<label for="countryInput" class="control-label">Country<em>*</em></label>						  	
+										<select	name="countryInput" id="countryInput" onchange="onchangeCountry(0);" data-mini="true" required="required" class="form-control focusClass">
+											<option value="">--Select Country--</option>
+										</select>
+										<div class="validation-place"></div>
+									</div>
+								</div>
+								<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group input-label-focus">								
+									<div class="input-group box">
+										<span class="input-group-addon" ></span>	
+										<label for="stateInput" class="control-label">State</label>						  	
+										<select	name="stateInput" id="stateInput" data-mini="true" class="form-control focusClass">
+											<option value="">--Select State--</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							
+							<div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								<!-- <button class="ui-btn st-ui-btn" type="submit" id="submitButton">Submit</button> -->
+								<button data-role="button" data-inline="false" data-theme="a" id="submitButton">Submit</button>
+							</div>
+							
+							<!-- 
+							<div class="ui-grid-a">
+								<div class="ui-block-a log-data-show">
+								<a href="#" class="ui-btn st-ui-btn" id="submitUpdateId" value="Back"
+										data-flag="add" onclick="gotoLoginPage();">Back</a>
+								</div>
+		
+								<div class="ui-block-b">
+									<button class="ui-btn st-ui-btn" type="submit" id="submitButton">Submit</button>
+								</div>
+							</div>
+							 -->
+						</form>
+					</div>
+				</div>
+			</div>
+		</div> 
+		
+		<div id="showUserPage" data-role="page" class="view-Profile">
+			<div data-role="header" onclick="commonFn();" data-position="fixed">
+				<div id="header" class="header-logo">
+					<img  src="img/logo.png" id="logo" alt="Glocal Panel" /> 
+				</div>
+			</div>
+			<div role="main" class="ui-content">
+				<div class="st-background">
+						
+						<div id="showUserDetailsPageId">
+							<div class="page-heading" onclick="commonFn();">
+								<h1>View Profile</h1>
+							</div>
+							<form id="showUserDetailsPageForm" onclick="commonFn();">
+								<div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<a href="#" onclick="gotoUpdateProfilePage();" data-role="button" data-inline="false" data-theme="a" class=" edit-profile-link">Edit
+											Profile</a>
+								</div>
+								<input id="userDetailsIdInput" name="userDetailsIdInput" type="hidden">
+								<div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12 showUserDetails">
+									<label for="firstNameShowInput" class="gp-light-blue"> Full Name </label>  
+									<p id="firstNameShowPage"></p>											
+									<label for="primaryNumberShowInput" class="gp-light-blue"> Primary Number </label>  
+									<p id="primaryNumberShowPage">---</p>
+									<label for="emailIdShowInput" class="gp-light-blue"> Email Id </label>  
+									<p id="emailIdShowPage">---</p>
+									<label for="primarySpecialityShowInput" class="gp-light-blue"> Primary Speciality </label> 
+									<p id="primarySpecialityShowPage">---</p>
+									<label for="secondarySpecialityShowInput" class="gp-light-blue"> Secondary Speciality </label> 
+									<p id="secondarySpecialityShowPage">---</p>
+									<label for="countryShowInput" class="gp-light-blue"> Country </label> 
+									<p id="countryShowPage">---</p>
+									<label for="stateShowInput" class="gp-light-blue"> State </label> 
+									<p id="stateShowPage">---</p>
+					
+								</div>
+							</form>
+							
+							<!-- 
+							<div class="bottom-navigation">
+								<div class="setting-popup">
+									<button  data-role="button" data-inline="false" data-theme="a" onclick="doLogout(this);">
+										<span class=""></span><p>Logout</p>
+									</button>	
+									<button  data-role="button" data-inline="false" data-theme="a" onclick="gotoUnsubscribePage(this);">
+										<span class=""></span><p>Unsubscribe</p>
+									</button>
+									<button  data-role="button" data-inline="false" data-theme="a" onclick="gotoContactUsPage(this);">
+										<span class=""></span><p>Contact Us</p>
+									</button>
+								</div>
+								<div class="row text-align-class">
+									<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoHomePage();">
+										<button class="nav-btn nav-btn5 btn-home"><span class="span-icon"></span><p>Home</p></button>
+									</div>
+									<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="showSurveysByTypeFn(1);">
+										<button class="nav-btn nav-btn1 btn-profile"><span class="span-icon"></span><p>Surveys</p></button>
+									</div>
+									<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoChangePassword();">
+										<button class="nav-btn nav-btn3 btn-password"><span class="span-icon"></span><p>Password</p></button>
+									</div>
+									<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="settingPopupFn();">
+										<button class="nav-btn nav-btn4 btn-setting"><span class="span-icon"></span><p>Setting</p></button>
+									</div>
+								</div>
+							</div>
+							 -->
+						</div>
+				</div>
+			</div>
+			<div data-role="footer" data-position="fixed" data-tap-toggle="false" data-transition="none">
+				<div class="bottom-navigation">
+					<div class="setting-popup">
+						<button  data-role="button" class="width-class" data-inline="false" data-theme="a" onclick="doLogout(this);">
+							<span class=""></span><p>Logout</p>
+						</button>	
+						<button  data-role="button" class="width-class" data-inline="false" data-theme="a" onclick="gotoUnsubscribePage(this);">
+							<span class=""></span><p>Unsubscribe</p>
+						</button>
+						<button  data-role="button" class="width-class" data-inline="false" data-theme="a" onclick="gotoContactUsPage(this);">
+							<span class=""></span><p>Contact Us</p>
+						</button>
+					</div>
+					<div class="row text-align-class">
+						<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoHomePage();">
+							<button class="nav-btn nav-btn5 width-class btn-home"><span class="span-icon"></span><p>Home</p></button>
+						</div>
+						<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="showSurveysByTypeFn(1);">
+							<button class="nav-btn nav-btn1 width-class btn-profile"><span class="span-icon"></span><p>Surveys</p></button>
+						</div>
+						<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoChangePassword();">
+							<button class="nav-btn nav-btn3 width-class btn-password"><span class="span-icon"></span><p>Password</p></button>
+						</div>
+						<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="settingPopupFn();">
+							<button class="nav-btn nav-btn4 width-class btn-setting"><span class="span-icon"></span><p>Setting</p></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="updateUserPage" data-role="page" class="update-profile">
+			<div data-role="header" onclick="commonFn();" data-position="fixed">
+				<div id="header" class="header-logo">
+					<img  src="img/logo.png" id="logo" alt="Glocal Panel" /> 
+				</div>
+			</div>
+			<div role="main" class="ui-content">
+				<div class="st-background">
+						<div id="updateUserDetailsPageId">
+							<div class="page-heading" onclick="commonFn();">
+								<h1>Update Profile</h1>
+							</div>
+							<form id="updateUserDetailsPageForm" onclick="commonFn();">
+								<input id="userDetailsIdInput" name="userDetailsIdInput" type="hidden">
+								<input type="hidden" id="emailMapIdForEdit" name="emailMapIdForEdit"/>
+								<div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group input-label-focus">								
+										<div class="input-group box">
+										  	<span class="input-group-addon" ></span>	
+										  	<label for="firstNameInput" class="control-label">First Name<em>*</em></label>						  	
+										  	<input type="text" class="form-control focusClass" data-mini="true" name="firstNameInput" id="firstNameInput" placeholder="First name" required="required" />
+											<div class="validation-place"></div>
+										</div>
+									</div>
+									<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group input-label-focus">								
+										<div class="input-group box">
+										  	<span class="input-group-addon" ></span>	
+										  	<label for="middleNameInput" class="control-label">Middle Name</label>						  	
+										  	<input type="text" class="form-control focusClass" name="middleNameInput" id="middleNameInput" placeholder="Middle name" />
+										  	<div class="validation-place"></div>
+										</div>
+									</div>
+									<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group input-label-focus">								
+										<div class="input-group box">
+										  	<span class="input-group-addon" ></span>	
+										  	<label for="lastNameInput" class="control-label">Last Name<em>*</em></label>						  	
+										  	<input type="text" class="form-control focusClass" data-mini="true" name="lastNameInput" id="lastNameInput" placeholder="Last name" required="required" />
+											<div class="validation-place"></div>
+										</div>
+									</div>
+									<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group input-label-focus">								
+										<div class="input-group box">
+										  	<span class="input-group-addon" ></span>	
+										  	<label for="primaryNumberInput" class="control-label">Telephone Number</label>						  	
+										  	<input type="text" class="form-control focusClass" name="primaryNumberInput" id="primaryNumberInput" placeholder="Telephone number" />
+										  	<div class="validation-place"></div>
+										</div>
+									</div>
+								</div>
+										
+								<div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group input-label-focus">								
+										<div class="input-group box">
+										  	<span class="input-group-addon" ></span>	
+										  	<label for="emailIdInput" class="control-label">Email Id<em>*</em></label>						  	
+										  	<input type="email" class="form-control focusClass" name="emailIdInput" id="emailIdInput" placeholder="Email Id" />
+										  	<div class="validation-place"></div>
+										</div>
+									</div>
+									
+									<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group input-label-focus">								
+										<div class="input-group box">
+										  	<span class="input-group-addon" ></span>	
+										  	<label for="primarySpecialityInput" class="control-label">Primary Speciality<em>*</em></label>						  	
+										  	<select	name="primarySpecialityInput" id="primarySpecialityInput" data-mini="true" required="required" onchange="onchangePriSpelty(1);" class="form-control focusClass">
+												<option value="">--Select Primary Speciality--</option>
+											</select>
+											<div class="validation-place"></div>
+										</div>
+									</div>
+									<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group input-label-focus">								
+										<div class="input-group box">
+										  	<span class="input-group-addon" ></span>	
+										  	<label for="secondarySpecialityInput" class="control-label">Secondary Speciality<em>*</em></label>						  	
+										  	<select	name="secondarySpecialityInput" id="secondarySpecialityInput" data-mini="true" required="required" class="form-control focusClass">
+												<option value="">--Select Secondary Speciality--</option>
+											</select>
+											<div class="validation-place"></div>
+										</div>
+									</div>
+								</div>
+										
+								<div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group input-label-focus">								
+										<div class="input-group box">
+										  	<span class="input-group-addon" ></span>	
+										  	<label for="countryInput" class="control-label">Country<em>*</em></label>						  	
+										  	<select	name="countryInput" id="countryInput" onchange="onchangeCountry(1);" data-mini="true" required="required" class="form-control focusClass">
+												<option value="">--Select Country--</option>
+											</select>
+											<div class="validation-place"></div>
+										</div>
+									</div>
+									<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group input-label-focus">								
+										<div class="input-group box">
+										  	<span class="input-group-addon" ></span>	
+										  	<label for="stateInput" class="control-label">State</label>						  	
+										  	<select	name="stateInput" id="stateInput" data-mini="true" class="form-control focusClass">
+												<option value="">--Select State--</option>
+											</select>
+										</div>
+									</div>
+									<!-- <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+										<div class="box">
+											<label for="stateInput"> State </label> 
+											<select	name="stateInput" id="stateInput" data-mini="true" class="form-control">
+												<option value="">--Select--</option>
+											</select>
+										</div>
+									</div> -->
+								</div>
+										
+								<div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<!-- <button class="ui-btn st-ui-btn width-class" type="submit" id="submitButton">Submit</button> -->
+									<button data-role="button" data-inline="false" data-theme="a" id="submitButton">Submit</button>
+								</div>
+							</form>
+						
+							<!-- <div class="bottom-navigation">
+								<div class="setting-popup">
+									<button  data-role="button" data-inline="false" data-theme="a" onclick="doLogout(this);">
+										<span class=""></span><p>Logout</p>
+									</button>	
+									<button  data-role="button" data-inline="false" data-theme="a" onclick="gotoUnsubscribePage(this);">
+										<span class=""></span><p>Unsubscribe</p>
+									</button>
+									<button  data-role="button" data-inline="false" data-theme="a" onclick="gotoContactUsPage(this);">
+										<span class=""></span><p>Contact Us</p>
+									</button>
+								</div>
+								<div class="row text-align-class">
+									<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoHomePage();">
+										<button class="nav-btn nav-btn5  btn-home"><span class="span-icon"></span><p>Home</p></button>
+									</div>
+									<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="showSurveysByTypeFn(1)">
+										<button class="nav-btn nav-btn1 btn-profile"><span class="span-icon"></span><p>Surveys</p></button>
+									</div>
+									<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoChangePassword();">
+										<button class="nav-btn nav-btn3 btn-password"><span class="span-icon"></span><p>Password</p></button>
+									</div>
+									<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="settingPopupFn();">
+										<button class="nav-btn nav-btn4 btn-setting"><span class="span-icon"></span><p>Setting</p></button>
+									</div>
+								</div>
+							</div> -->
+						</div>
+				</div>
+			</div>
+			<div data-role="footer" data-position="fixed" data-tap-toggle="false" data-transition="none">
+				<div class="bottom-navigation">
+					<div class="setting-popup">
+						<button  data-role="button" class="width-class" data-inline="false" data-theme="a" onclick="doLogout(this);">
+							<span class=""></span><p>Logout</p>
+						</button>	
+						<button  data-role="button" class="width-class" data-inline="false" data-theme="a" onclick="gotoUnsubscribePage(this);">
+							<span class=""></span><p>Unsubscribe</p>
+						</button>
+						<button  data-role="button" data-inline="false" class="width-class" data-theme="a" onclick="gotoContactUsPage(this);">
+							<span class=""></span><p>Contact Us</p>
+						</button>
+					</div>
+					<div class="row text-align-class">
+						<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoHomePage();">
+							<button class="nav-btn nav-btn5 width-class btn-home"><span class="span-icon"></span><p>Home</p></button>
+						</div>
+						<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="showSurveysByTypeFn(1)">
+							<button class="nav-btn nav-btn1 width-class btn-profile"><span class="span-icon"></span><p>Surveys</p></button>
+						</div>
+						<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoChangePassword();">
+							<button class="nav-btn nav-btn3 width-class btn-password"><span class="span-icon"></span><p>Password</p></button>
+						</div>
+						<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="settingPopupFn();">
+							<button class="nav-btn nav-btn4 width-class btn-setting"><span class="span-icon"></span><p>Setting</p></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="changePassword" data-role="page" class="change-Password">
+			<div data-role="header" onclick="commonFn();" data-position="fixed">
+				<div id="header" class="header-logo">
+					<img  src="img/logo.png" id="logo" alt="Glocal Panel" /> 
+				</div>
+			</div>
+			<div role="main" class="ui-content">
+				<div class="st-background">
+					<div id="changePasswordPageId">
+						<div class="page-heading" onclick="commonFn();">
+							<h1>Change Password</h1>
+						</div>
+						<form id="changePasswordPageForm" onclick="commonFn();">
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group input-label-focus">								
+									<div class="input-group box">
+									  	<span class="input-group-addon" ></span>	
+									  	<label for="oldPasswordInput" class="control-label"> Old Password <em>*</em></label>						  	
+									  	<input type="password" class="form-control focusClass" data-mini="true" name="oldPasswordInput" id="oldPasswordInput" placeholder="Old Password" required="required" />
+										<div class="validation-place"></div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group input-label-focus">								
+									<div class="input-group box">
+									  	<span class="input-group-addon" ></span>	
+									  	<label for="newPasswordInput" class="control-label"> New Password <em>*</em></label>						  	
+									  	<input type="password" class="form-control focusClass" data-mini="true" name="newPasswordInput" id="newPasswordInput" placeholder="New Password" required="required" />
+										<div class="validation-place"></div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group input-label-focus">								
+									<div class="input-group box">
+									  	<span class="input-group-addon" ></span>	
+									  	<label for="confirmPasswordInput" class="control-label"> Confirm Password <em>*</em></label>						  	
+									  	<input type="password" class="form-control focusClass" data-mini="true" name="confirmPasswordInput" id="confirmPasswordInput" placeholder="Confirm Password" required="required" />
+										<div class="validation-place"></div>
+									</div>
+								</div>
+							</div>
+							<div class="row submit-button">
+								<!-- <button class="ui-btn st-ui-btn width-class" type="submit" id="submitButton">Submit</button> -->
+								<button data-role="button" data-inline="false" data-theme="a" id="submitButton">Submit</button>
+							</div>
+						</form>
+						<!-- <div class="bottom-navigation">
+							<div class="setting-popup">
+								<button  data-role="button" data-inline="false" data-theme="a" onclick="doLogout(this);">
+									<span class=""></span><p>Logout</p>
+								</button>	
+								<button  data-role="button" data-inline="false" data-theme="a" onclick="gotoUnsubscribePage(this);">
+									<span class=""></span><p>Unsubscribe</p>
+								</button>
+								<button  data-role="button" data-inline="false" data-theme="a" onclick="gotoContactUsPage(this);">
+									<span class=""></span><p>Contact Us</p>
+								</button>
+							</div>
+							<div class="row text-align-class">
+								<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoHomePage();">
+									<button class="nav-btn nav-btn5  btn-home"><span class="span-icon"></span><p>Home</p></button>
+								</div>
+								<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="showSurveysByTypeFn(1);">
+									<button class="nav-btn nav-btn1 btn-profile"><span class="span-icon"></span><p>Surveys</p></button>
+								</div>
+								<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoShowProfilePage(false, 1);">
+									<button class="nav-btn nav-btn2 btn-password"><span class="span-icon"></span><p>Profile</p></button>
+								</div>
+								<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="settingPopupFn();">
+									<button class="nav-btn nav-btn4 btn-setting"><span class="span-icon"></span><p>Setting</p></button>
+								</div>
+							</div>
+						</div> -->
+						
+					</div>
+				</div>
+			</div>
+			<div data-role="footer" data-position="fixed" data-tap-toggle="false" data-transition="none">
+				<div class="bottom-navigation">
+					<div class="setting-popup">
+						<button  data-role="button" class="width-class" data-inline="false" data-theme="a" onclick="doLogout(this);">
+							<span class=""></span><p>Logout</p>
+						</button>	
+						<button  data-role="button" class="width-class" data-inline="false" data-theme="a" onclick="gotoUnsubscribePage(this);">
+							<span class=""></span><p>Unsubscribe</p>
+						</button>
+						<button  data-role="button" data-inline="false" class="width-class" data-theme="a" onclick="gotoContactUsPage(this);">
+							<span class=""></span><p>Contact Us</p>
+						</button>
+					</div>
+					<div class="row text-align-class">
+						<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoHomePage();">
+							<button class="nav-btn nav-btn5 width-class btn-home"><span class="span-icon"></span><p>Home</p></button>
+						</div>
+						<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="showSurveysByTypeFn(1);">
+							<button class="nav-btn nav-btn1 width-class btn-profile"><span class="span-icon"></span><p>Surveys</p></button>
+						</div>
+						<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoShowProfilePage(false, 1);">
+							<button class="nav-btn nav-btn2 width-class btn-password"><span class="span-icon"></span><p>Profile</p></button>
+						</div>
+						<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="settingPopupFn();">
+							<button class="nav-btn nav-btn4 width-class btn-setting"><span class="span-icon"></span><p>Setting</p></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="forgotPassword" data-role="page" class="forgot-password-class">
+			<div data-role="header" data-position="fixed">
+				<div id="header" class="header-logo">
+					<a href="#"	class="ui-btn-left ui-btn ui-btn-inline ui-mini back-bttn" onclick="onBackKeyDown();"><i class="fa fa-arrow-left"></i></a>
+					<img  src="img/logo.png" id="logo" alt="Glocal Panel" /> 
+				</div>
+			</div>
+			<div role="main" class="ui-content">
+				<div class="st-background">
+					<div id="forgotPasswordPageId">
+						<div class="page-heading">
+							<h1>Forgot Password</h1>
+						</div>
+						<form id="forgotPasswordPageForm">
+							<div class="row">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group input-label-focus">								
+									<div class="input-group">
+									  	<span class="input-group-addon" ><i class="fa fa-user"></i></span>	
+									  	<label for="forgotEmailIdInput" class="control-label">Email Id<em>*</em></label>						  	
+									  	<input type="email" class="form-control focusClass" data-mini="true" name="forgotEmailIdInput" id="forgotEmailIdInput" placeholder="Email Id" required="required" />
+										<div class="validation-place"></div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="row">
+								<!-- <button class="ui-btn st-ui-btn" type="submit" id="submitButton">Submit</button> -->
+								<button data-role="button" data-inline="false" data-theme="a" id="submitButton">Submit</button>
+							</div>
+							
+							<!-- 
+							<div class="ui-grid-a">
+								<div class="ui-block-a log-data-show">
+									<a href="#" class="ui-btn st-ui-btn" id="submitUpdateId" value="Back"
+										data-flag="add" onclick="gotoLoginPage();" >Back</a>
+								</div>
+		
+								<div class="ui-block-b">
+									<button class="ui-btn st-ui-btn" type="submit" id="submitButton">Submit</button>
+								</div>
+							</div>
+							 -->
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="unsubscribePage" data-role="page" class="un-subscribe">
+			<div data-role="header" onclick="commonFn();" data-position="fixed">
+				<div id="header" class="header-logo">
+					<img  src="img/logo.png" id="logo" alt="Glocal Panel" /> 
+				</div>
+			</div>
+			<div role="main" class="ui-content">
+				<div class="st-background">
+					<div id="unsubscribePageId">
+						<!-- <div data-role="header" data-position="fixed">
+							<h1>Unsubscribe</h1>
+						</div> -->
+						<div class="page-heading" onclick="commonFn();">
+							<h1>Unsubscribe</h1>
+						</div>
+						<form id="unsubscribePageForm" onclick="commonFn();">
+							<div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								<div class="col-sm-3 col-md-4 col-lg-4"></div>
+								<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 append-unsub">
+									<div class="box" id="appendUnsubscribeList">
+										
+									</div>
+								</div>
+							</div>
+							<div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding: 10px;">
+								<div class="col-sm-3 col-md-4 col-lg-4"></div>
+								<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+									<label id="firstLineUnsub"></label>
+								</div>
+							</div>
+							<div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								<div class="col-sm-3 col-md-4 col-lg-4"></div>
+								<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+									<label id="secondLineUnsub"></label>
+									<div class="box" id="appendUnsubscribeList">
+										<textarea type="text" class="form-control"  data-mini="true" name="unSubscribeComment" id="unSubscribeComment" rows="4" cols="3" > </textarea>
+									</div>
+								</div>
+							</div>
+							
+							<div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12 submitUnsubData">
+								<!-- <a href="#" onclick="unsubscribeConfirmData();" data-inline="false"  data-theme="a" class="ui-btn st-ui-btn width-class" value="Submit"
+										data-flag="add">Submit</a> -->
+									<button data-role="button" data-inline="false" data-theme="a" id="submitButton">Submit</button>	
+							</div>
+						</form>
+						
+						<!-- <div class="bottom-navigation">
+							<div class="setting-popup">
+								<button  data-role="button" data-inline="false" data-theme="a" onclick="doLogout(this);">
+									<span class=""></span><p>Logout</p>
+								</button>	
+								<button  data-role="button" data-inline="false" data-theme="a" onclick="gotoUnsubscribePage(this);">
+									<span class=""></span><p>Unsubscribe</p>
+								</button>
+								<button  data-role="button" data-inline="false" data-theme="a" onclick="gotoContactUsPage(this);">
+									<span class=""></span><p>Contact Us</p>
+								</button>
+							</div>
+							<div class="row text-align-class">
+								<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoHomePage();">
+									<button class="nav-btn nav-btn5  btn-home"><span class="span-icon"></span><p>Home</p></button>
+								</div>
+								
+								<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="showSurveysByTypeFn(1);">
+									<button class="nav-btn nav-btn1 btn-profile"><span class="span-icon"></span><p>Surveys</p></button>
+								</div>
+								<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoShowProfilePage(false, 1);">
+									<button class="nav-btn nav-btn2 btn-password"><span class="span-icon"></span><p>Profile</p></button>
+								</div>
+								<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoChangePassword();">
+									<button class="nav-btn nav-btn3 btn-password"><span class="span-icon"></span><p>Password</p></button>
+								</div>
+							</div>
+						</div> -->
+					</div>
+				</div>
+			</div>
+			<div data-role="footer" data-position="fixed" data-tap-toggle="false" data-transition="none">
+				<div class="bottom-navigation">
+					<div class="setting-popup">
+						<button  data-role="button" class="width-class" data-inline="false" data-theme="a" onclick="doLogout(this);">
+							<span class=""></span><p>Logout</p>
+						</button>	
+						<button  data-role="button" class="width-class" data-inline="false" data-theme="a" onclick="gotoUnsubscribePage(this);">
+							<span class=""></span><p>Unsubscribe</p>
+						</button>
+						<button  data-role="button" class="width-class" data-inline="false" data-theme="a" onclick="gotoContactUsPage(this);">
+							<span class=""></span><p>Contact Us</p>
+						</button>
+					</div>
+					<div class="row text-align-class">
+						<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoHomePage();">
+							<button class="nav-btn nav-btn5 width-class btn-home"><span class="span-icon"></span><p>Home</p></button>
+						</div>
+						
+						<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="showSurveysByTypeFn(1);">
+							<button class="nav-btn nav-btn1 width-class btn-profile"><span class="span-icon"></span><p>Surveys</p></button>
+						</div>
+						<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoShowProfilePage(false, 1);">
+							<button class="nav-btn nav-btn2 width-class btn-password"><span class="span-icon"></span><p>Profile</p></button>
+						</div>
+						<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoChangePassword();">
+							<button class="nav-btn nav-btn3 width-class btn-password"><span class="span-icon"></span><p>Password</p></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="redeemHistory" data-role="page" class="redeem-History" >
+			<div data-role="header" onclick="commonFn();" data-position="fixed">
+				<div id="header" class="header-logo">
+					<img  src="img/logo.png" id="logo" alt="Glocal Panel" /> 
+				</div>
+			</div>
+			<div role="main" class="ui-content">
+				<div class="st-background">
+					<div id="redeemHistoryDivId">
+						<div class="page-heading" onclick="commonFn();">
+							<h1>Redemption history</h1>
+						</div>
+						<table class="redeemHistoryTable" cellspacing="0" cellpadding="0" onclick="commonFn();">
+							<thead>
+								<tr>
+									<th><i class="fa fa-calendar"></i><label>Order Date</label></th>
+									<th><i class="fa fa-shopping-basket"></i><label>Order Status</label></th>
+									<th><i class="fa fa-tags"></i><label>Spent</label></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>YYYY-MM-DD HH:mm:ss</td>
+									<td>Status</td>
+									<td>Currency</td>
+								</tr>
+							</tbody>
+						</table>
+						<!-- <div class="bottom-navigation">
+							<div class="setting-popup">
+								<button  data-role="button" data-inline="false" data-theme="a" onclick="doLogout(this);">
+									<span class=""></span><p>Logout</p>
+								</button>	
+								<button  data-role="button" data-inline="false" data-theme="a" onclick="gotoUnsubscribePage(this);">
+									<span class=""></span><p>Unsubscribe</p>
+								</button>
+								<button  data-role="button" data-inline="false" data-theme="a" onclick="gotoContactUsPage(this);">
+									<span class=""></span><p>Contact Us</p>
+								</button>
+							</div>
+							<div class="row text-align-class">
+								<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoHomePage();">
+									<button class="nav-btn nav-btn5 btn-home"><span class="span-icon"></span><p>Home</p></button>
+								</div>
+								<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="showSurveysByTypeFn(1);">
+									<button class="nav-btn nav-btn1 btn-profile"><span class="span-icon"></span><p>Surveys</p></button>
+								</div>
+								<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoShowProfilePage(false, 1);">
+									<button class="nav-btn nav-btn2 btn-password"><span class="span-icon"></span><p>Profile</p></button>
+								</div>
+								<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="settingPopupFn();">
+									<button class="nav-btn nav-btn4 btn-setting"><span class="span-icon"></span><p>Setting</p></button>
+								</div>
+							</div>
+						</div> -->
+					</div>
+				</div>
+			</div>
+			<div data-role="footer" data-position="fixed" data-tap-toggle="false" data-transition="none">
+				<div class="bottom-navigation">
+					<div class="setting-popup">
+						<button  data-role="button" class="width-class" data-inline="false" data-theme="a" onclick="doLogout(this);">
+							<span class=""></span><p>Logout</p>
+						</button>	
+						<button  data-role="button" class="width-class" data-inline="false" data-theme="a" onclick="gotoUnsubscribePage(this);">
+							<span class=""></span><p>Unsubscribe</p>
+						</button>
+						<button  data-role="button" class="width-class" data-inline="false" data-theme="a" onclick="gotoContactUsPage(this);">
+							<span class=""></span><p>Contact Us</p>
+						</button>
+					</div>
+					<div class="row text-align-class">
+						<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoHomePage();">
+							<button class="nav-btn nav-btn5 width-class btn-home"><span class="span-icon"></span><p>Home</p></button>
+						</div>
+						<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="showSurveysByTypeFn(1);">
+							<button class="nav-btn nav-btn1 width-class btn-profile"><span class="span-icon"></span><p>Surveys</p></button>
+						</div>
+						<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoShowProfilePage(false, 1);">
+							<button class="nav-btn nav-btn2 width-class btn-password"><span class="span-icon"></span><p>Profile</p></button>
+						</div>
+						<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="settingPopupFn();">
+							<button class="nav-btn nav-btn4 width-class btn-setting"><span class="span-icon"></span><p>Setting</p></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="surveyLinkPage" data-role="page" class="survey-link-class">
+			<div data-role="header" data-position="fixed">
+				<div id="header" class="header-logo">
+					<img  src="img/logo.png" id="logo" alt="Glocal Panel" /> 
+				</div>
+			</div>
+			<div role="main" class="ui-content">
+				<div class="st-background">
+					<div id="surveyLinkPageId">
+						<div class="page-heading">
+							<h1>Survey Details</h1>
+						</div>
+						<form id="surveyLinkPageForm">
+							<input id="surveyLinkPageSPMId" name="surveyLinkPageSPMId" type="hidden"/>
+							<input id="surveyLinkPageSurveyLink" name="surveyLinkPageSurveyLink" type="hidden"/>
+							<p> Please log into the web application with your primary email Id to participate survey. </p>
+							<p> If you want to send this survey to another Mail Id Please <a href="#" onclick="surveyMailIdToggle();">Click Here</a></p>
+							<div class="surveyMailIdClass class-display-none">
+								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group input-label-focus icon-fa">								
+										<div class="input-group">
+										  	<span class="input-group-addon" id="basic-addon1"><i class="fa fa-user"></i></span>	
+										  	<label for="surveyNewEmailIdInput" class="control-label">Email Id<em>*</em></label>						  	
+										  	<input type="email" class="form-control focusClass" data-mini="true" name="surveyNewEmailIdInput" id="surveyNewEmailIdInput" placeholder="Email Id" required="required" />
+											<div class="validation-place"></div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<button data-role="button" data-inline="false" data-theme="a" id="submitButton">Submit</button>
+								</div>
+							</div>
+						</form>
+						<!-- <div class="bottom-navigation">
+							<div class="setting-popup">
+								<button  data-role="button" data-inline="false" data-theme="a" onclick="doLogout(this);">
+									<span class=""></span><p>Logout</p>
+								</button>	
+								<button  data-role="button" data-inline="false" data-theme="a" onclick="gotoUnsubscribePage(this);">
+									<span class=""></span><p>Unsubscribe</p>
+								</button>
+								<button  data-role="button" data-inline="false" data-theme="a" onclick="gotoContactUsPage(this);">
+									<span class=""></span><p>Contact Us</p>
+								</button>
+							</div>
+							<div class="row text-align-class">
+								<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoHomePage();">
+									<button class="nav-btn nav-btn5  btn-home"><span class="span-icon"></span><p>Home</p></button>
+								</div>
+								
+								<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="showSurveysByTypeFn(1);">
+									<button class="nav-btn nav-btn1 btn-profile"><span class="span-icon"></span><p>Surveys</p></button>
+								</div>
+								<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoShowProfilePage(false, 1);">
+									<button class="nav-btn nav-btn2 btn-password"><span class="span-icon"></span><p>Profile</p></button>
+								</div>
+								<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoChangePassword();">
+									<button class="nav-btn nav-btn3 btn-password"><span class="span-icon"></span><p>Password</p></button>
+								</div>
+							</div>
+						</div> -->
+					</div>
+				</div>
+			</div>
+			<div data-role="footer" data-position="fixed" data-tap-toggle="false" data-transition="none">
+				<div class="bottom-navigation">
+					<div class="setting-popup">
+						<button  data-role="button" class="width-class" data-inline="false" data-theme="a" onclick="doLogout(this);">
+							<span class=""></span><p>Logout</p>
+						</button>	
+						<button  data-role="button" class="width-class" data-inline="false" data-theme="a" onclick="gotoUnsubscribePage(this);">
+							<span class=""></span><p>Unsubscribe</p>
+						</button>
+						<button  data-role="button" class="width-class" data-inline="false" data-theme="a" onclick="gotoContactUsPage(this);">
+							<span class=""></span><p>Contact Us</p>
+						</button>
+					</div>
+					<div class="row text-align-class">
+						<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoHomePage();">
+							<button class="nav-btn nav-btn5 width-class btn-home"><span class="span-icon"></span><p>Home</p></button>
+						</div>
+						
+						<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="showSurveysByTypeFn(1);">
+							<button class="nav-btn nav-btn1 width-class btn-profile"><span class="span-icon"></span><p>Surveys</p></button>
+						</div>
+						<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoShowProfilePage(false, 1);">
+							<button class="nav-btn nav-btn2 width-class btn-password"><span class="span-icon"></span><p>Profile</p></button>
+						</div>
+						<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoChangePassword();">
+							<button class="nav-btn nav-btn3 width-class btn-password"><span class="span-icon"></span><p>Password</p></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="contactUsPage" data-role="page" class="contactUs-Page-class">
+			<div data-role="header" data-position="fixed">
+				<div id="header" class="header-logo">
+					<a href="#"	class="ui-btn-left ui-btn ui-btn-inline ui-mini back-bttn contactUsHref" onclick="onBackKeyDown();"><i class="fa fa-arrow-left"></i></a>
+					<img  src="img/logo.png" id="logo" alt="Glocal Panel" /> 
+				</div>
+			</div>
+			<div role="main" class="ui-content">
+				<div class="st-background">
+					<div id="contactUsPageId">
+						<div class="page-heading">
+							<h1>Contact Us</h1>
+						</div>
+						<form id="contactUsForm">
+							<p>  </p>
+							<p>  </p>
+							<div class="contactUsDivClass">
+								<div class="row">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group input-label-focus fullNameDiv">							
+										<label for="fullNameInput" class="control-label">Username<em>*</em></label>		
+										<span class="input-group-addon" ></span>					  	
+										<input type="text" class="form-control focusClass" data-mini="true" name="fullNameInput" id="fullNameInput" placeholder="Full Name" required="required" />
+										<div class="validation-place"></div>
+									</div>
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group input-label-focus icon-fa emailDiv">
+										<label for="emailIdInput" class="control-label">Email Id<em>*</em> </label>
+										<span class="input-group-addon" id="basic-addon1"><i class="fa fa-user"></i></span>			
+										<input type="email" class="form-control focusClass" data-mini="true" name="emailIdInput" id="emailIdInput" placeholder="Email Id" required="required" />
+										<div class="validation-place"></div>
+									</div>
+									<!-- <div class="form-group input-label-focus">
+										<label for="telephoneNumberInput" class="control-label">Telephone no.<em>*</em> </label>
+										<span class="input-group-addon" id="basic-addon1"></span>			
+										<input type="number" class="form-control focusClass" data-mini="true" name="telephoneNumberInput" id="telephoneNumberInput" placeholder="Telephone No." required="required" />
+										<div class="validation-place"></div>
+									</div> -->
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group input-label-focus countryDiv">
+										<label for="countryInput" class="control-label">Country<em>*</em></label>	
+										<span class="input-group-addon" ></span>							  	
+										<select	name="countryInput" id="countryInput" data-mini="true" required="required" class="form-control focusClass">
+											<option value="">--Select Country--</option>
+										</select>
+										<div class="validation-place"></div>
+									</div>
+									
+									
+									<!-- <div class="form-group input-label-focus">
+										<label for="subjectInput" class="control-label">Subject<em>*</em> </label>
+										<span class="input-group-addon" id="basic-addon1"></span>			
+										<input type="text" class="form-control focusClass" data-mini="true" name="subjectInput" id="subjectInput" placeholder="Subject" required="required" />
+										<div class="validation-place"></div>
+									</div> -->
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group input-label-focus">
+										<label for="emailBodyInput" class="control-label">Message<em>*</em> </label>
+										<span class="input-group-addon"></span>			
+										<textarea class="form-control focusClass"  data-mini="true" name="emailBodyInput" id="emailBodyInput" rows="4" cols="500" placeholder="Message" required="required" > </textarea>
+										<div class="validation-place"></div>
+									</div>
+								</div>
+								<div class="row">
+									<button data-role="button" data-inline="false" data-theme="a" id="submitButton">Submit</button>
+								</div>
+							</div>
+						</form>
+						<!-- <div class="bottom-navigation contactUs-Navigator">
+							<div class="setting-popup">
+								<button  data-role="button" data-inline="false" data-theme="a" onclick="doLogout(this);">
+									<span class=""></span><p>Logout</p>
+								</button>	
+								<button  data-role="button" data-inline="false" data-theme="a" onclick="gotoUnsubscribePage(this);">
+									<span class=""></span><p>Unsubscribe</p>
+								</button>
+								<button  data-role="button" data-inline="false" data-theme="a" onclick="gotoContactUsPage(this);">
+									<span class=""></span><p>Contact Us</p>
+								</button>
+							</div>
+							<div class="row text-align-class">
+								<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoHomePage();">
+									<button class="nav-btn nav-btn5  btn-home"><span class="span-icon"></span><p>Home</p></button>
+								</div>
+								
+								<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="showSurveysByTypeFn(1);">
+									<button class="nav-btn nav-btn1 btn-profile"><span class="span-icon"></span><p>Surveys</p></button>
+								</div>
+								<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoShowProfilePage(false, 1);">
+									<button class="nav-btn nav-btn2 btn-password"><span class="span-icon"></span><p>Profile</p></button>
+								</div>
+								<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoChangePassword();">
+									<button class="nav-btn nav-btn3 btn-password"><span class="span-icon"></span><p>Password</p></button>
+								</div>
+							</div>
+						</div> -->
+					</div>
+				</div>
+			</div>
+			<div data-role="footer" data-position="fixed" data-tap-toggle="false" data-transition="none">
+				<div class="bottom-navigation contactUs-Navigator">
+					<div class="setting-popup">
+						<button  data-role="button" class="width-class" data-inline="false" data-theme="a" onclick="doLogout(this);">
+							<span class=""></span><p>Logout</p>
+						</button>	
+						<button  data-role="button" class="width-class" data-inline="false" data-theme="a" onclick="gotoUnsubscribePage(this);">
+							<span class=""></span><p>Unsubscribe</p>
+						</button>
+						<button  data-role="button" class="width-class" data-inline="false" data-theme="a" onclick="gotoContactUsPage(this);">
+							<span class=""></span><p>Contact Us</p>
+						</button>
+					</div>
+					<div class="row text-align-class">
+						<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoHomePage();">
+							<button class="nav-btn nav-btn5 width-class btn-home"><span class="span-icon"></span><p>Home</p></button>
+						</div>
+						
+						<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="showSurveysByTypeFn(1);">
+							<button class="nav-btn nav-btn1 width-class btn-profile"><span class="span-icon"></span><p>Surveys</p></button>
+						</div>
+						<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoShowProfilePage(false, 1);">
+							<button class="nav-btn nav-btn2 width-class btn-password"><span class="span-icon"></span><p>Profile</p></button>
+						</div>
+						<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoChangePassword();">
+							<button class="nav-btn nav-btn3 width-class btn-password"><span class="span-icon"></span><p>Password</p></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</body>
+	
+	<script type="text/javascript" src="cordova.js"></script>
+	<!-- PhoneGap Plugin for Notification -->
+	<!-- <script type="text/javascript" src="libs/push.js"></script> -->
+	<!-- <script type="text/javascript" src="phonegap.js"></script> -->
+	<script type="text/javascript" src="libs/jquery.min.js"></script>
+	<script type="text/javascript" src="libs/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="libs/fastclick.min.js"></script>
+	<script type="text/javascript" src="libs/PushNotification.js"></script>
+	<!-- <script type="text/javascript" src="libs/push.js"></script> -->
+	<!-- <script type="text/javascript" charset="utf-8" src="PushNotification.js"></script> -->
+	<script type="text/javascript"
+		src="libs/jQueryMobile/jquery.mobile-1.4.5.min.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+	<!-- <script type="text/javascript" src="js/bootstrap.min.js"></script> -->
+	
+	<script type="text/javascript">
+		app.initialize();
+	</script>
+
+</html>
