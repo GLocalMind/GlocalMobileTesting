@@ -2891,6 +2891,7 @@ function successHomePageDataFn(responseData){
 			$('#earnedIncentives').text(balanceRedeemPoints);
 			$('#usedIncentives').text(usedIncentives);
 			$('#totalIncentives').text(approvedIncentives);
+			$('#onlineRewardsLinkText').text(onlineRewardLink);
 			//$('.onlineRewardsUsers').show();
 			//$('.nonOnlineUsers').hide();
 			$('.incentive-info .redeemLinkClass').attr("data-urllink",onlineRewardLink);
