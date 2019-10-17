@@ -450,8 +450,8 @@ $(document).on("pagecreate", function() {
 });
 */
 
-var appUrl = 'http://122.166.219.146:8031/StavyahSurvey/mobileApp/appEntry.do'; // Local Test System GlocalMind
-// var appUrl = 'http://192.168.1.12:9090/StavyahSurvey/mobileApp/appEntry.do'; // Local Test System
+//var appUrl = 'http://122.166.219.146:8031/StavyahSurvey/mobileApp/appEntry.do'; // Local Test System GlocalMind
+	var appUrl = 'http://192.168.1.13:8080/StavyahSurvey/mobileApp/appEntry.do'; // Local Test System
 //var appUrl = 'http://106.51.71.198:8031/StavyahSurvey/mobileApp/appEntry.do'; // GlocalPanel Test System
 // var appUrl = 'http://www.glocalpanel.com/mobileApp/appEntry.do'; // GlocalPanel Live
 var appRequiresWiFi='This action requires internet.';
