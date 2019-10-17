@@ -547,3 +547,45 @@ body{
 #updateUserDetailsPageForm .ui-mini, #registrationPageForm .ui-mini, #contactUsForm .ui-mini{
 	margin: 0;
 }
+
+.qual-tdi-invites-container {
+    position: absolute;
+    bottom: 110px;
+    background: #5eaded;
+    padding: 10px;
+    width: 100%;
+    left: 0;
+    cursor: pointer;
+}
+
+.qual-link-div {
+	
+}
+
+.qual-link-div a.qual-link {
+	background: #5791fd;
+	border-radius: 3px;
+	height: 25px;
+	line-height: 25px;
+	padding: 0 10px;
+	text-decoration: none;
+	text-align: center;
+	color: #fff;
+	display: inline-block;
+	font-weight: 300;
+	margin: 5px 3px;
+	font-size: 12px;
+}
+
+.qual-link-div a.qual-link.qual-link-accept{
+	background: #87dd70;
+	
+}
+
+.qual-link-div a.qual-link.qual-link-reject {
+	background: #fd784f;
+}
+
+
+
+

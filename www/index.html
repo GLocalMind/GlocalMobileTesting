@@ -7,10 +7,6 @@
 		<meta name="format-detection" content="telephone=no" />
 		<meta name="viewport"
 			content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, target-densitydpi=medium-dpi" />
-		<!-- Android Working -->
-		<!-- <meta http-equiv="Content-Security-Policy"
-			content="default-src *; script-src * 'unsafe-eval' 'unsafe-inline'; connect-src *; img-src *; style-src * 'unsafe-inline' ; media-src *;">
-		 -->
 		<!-- IOS Working -->
 		<meta http-equiv="Content-Security-Policy" 
 			content="img-src * 'self' data:; default-src * 'self' gap: wss: ws: ; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval';">	
@@ -22,9 +18,6 @@
 		<link rel="stylesheet" type="text/css" href="css/flexboxgrid.min.css" />
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
 		<link rel="stylesheet" href="css/fontawesome/css/font-awesome.min.css" />
-		<!-- <link rel="stylesheet" href="css/fontawesome/css/bootstrap.min.css" />
-		<link rel="stylesheet" href="css/fontawesome/css/bootstrap-theme.min.css" /> -->
-
 	</head>
 
 	<body>
@@ -54,7 +47,7 @@
 									<div class="validation-place"></div>
 								</div>
 								<div class="forgot-password">
-									<a href="#" onclick="gotoForgotPassword();">Forgot Password Test?</a>
+									<a href="#" onclick="gotoForgotPassword();">Forgot Password?</a>
 								</div>						
 								<button data-role="button" data-inline="false" data-theme="a" id="submitButton">Login</button>
 							</form>
@@ -66,7 +59,7 @@
 							<button class="contactUsLogin" data-role="button" data-inline="false" data-theme="c" onclick="gotoContactUsPage();"> Contact Us </button>
 						</div>
 						<div class="hm-footer">
-							<p class="versionId">v1.0.4</p>
+							<p class="versionId">v1.1.2</p>
 							<a href="#" onclick="openInAppBrowser(this);" data-linktype="1" data-urllink="http://www.glocalpanel.com/user/privacyPolicy.do">Privacy Policy</a>
 							<br/>
 							<p class="copyRightClass">Copyright ©2019 GLocalPanel.com. All rights reserved.</p>
@@ -77,6 +70,7 @@
 			</div>
 		</div>
 		<!-- Login Page End-->	
+		
 		<!-- Dashboard Home Page -->
 		<div id="dashboardPage" data-role="page" class="physician-dashboard" >	
 			<div role="main" class="ui-content">		
@@ -137,65 +131,20 @@
 									</div>
 								</div>
 								
-								<!--
-								<div class="col-gp col-xs-4 col-sm-4 col-md-4 col-lg-4 onlineRewardsUsers">
-									<div class="incentive-icon">
-										<span  class="incentives-icon"></span>
-										<label>Total Incentives </label><p id="totalIncentives">200</p>
-									</div>
-								</div>
-								
-								<div class="col-gp col-xs-4 col-sm-4 col-md-4 col-lg-4 onlineRewardsUsers">
-									<div class="incentive-icon onlineRewardsOnClick" >
-									<span  class="incentives-icon"><i class="fa fa-plus"></i></span>
-									<label>Ready to Redeem </label><p id="earnedIncentives">200</p>
-									</div>
-								</div>
-								<div class="col-gp col-xs-4 col-sm-4 col-md-4 col-lg-4 onlineRewardsUsers">
-									<div class="incentive-icon">
-										<span  class="incentives-icon"><i class="fa fa-minus"></i></span>
-										<label> Used  Incentives </label><p id="usedIncentives">80</p>
-									</div>
-								</div>
-								-->
-								<!-- <div class="col-gp col-xs-4 col-sm-4 col-md-4 col-lg-4 onlineRewardsUsers">
-									<label>Total <br/> Incentives </label><p id="earnedIncentives">200</p>
-								</div>
-								<div class="col-gp col-xs-4 col-sm-4 col-md-4 col-lg-4 onlineRewardsUsers">
-									<label>Ready to <br/> Redeem </label><p id="usedIncentives">80</p>
-								</div> -->
+							</div>
+							
+							<div class="qual-tdi-invites-container" onclick="gotoQualTdiSurveysFn();">
+								Qual TDI Invitations - 
+								<strong>
+									<span id="qualTDICountDashbaord">10</span> 
+									(Click Here)
+								</strong>
 							</div>
 									
-							<!-- <div class="bottom-navigation">
-								<div class="setting-popup">
-									<button  data-role="button" data-inline="false" data-theme="a" onclick="doLogout(this);">
-										<span class=""></span><p>Logout</p>
-									</button>	
-									<button  data-role="button" data-inline="false" data-theme="a" onclick="gotoUnsubscribePage(this);">
-										<span class=""></span><p>Unsubscribe</p>
-									</button>
-									<button  data-role="button" data-inline="false" data-theme="a" onclick="gotoContactUsPage(this);">
-										<span class=""></span><p>Contact Us</p>
-									</button>
-								</div>
-								<div class="row text-align-class">
-									<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="showSurveysByTypeFn(1);">
-										<button class="nav-btn nav-btn1  btn-survey"><span class="span-icon"></span><p>Survey</p></button>
-									</div>
-									<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoShowProfilePage(false, 1);">
-										<button class="nav-btn nav-btn2 btn-profile"><span class="span-icon"></span><p>Profile</p></button>
-									</div>
-									<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoChangePassword();">
-										<button class="nav-btn nav-btn3 btn-password"><span class="span-icon"></span><p>Password</p></button>
-									</div>
-									<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="settingPopupFn();">
-										<button class="nav-btn nav-btn4 btn-setting"><span class="span-icon"></span><p>Setting</p></button>
-									</div>
-								</div>
-							</div> -->
 						</div>
 				</div>
 			</div>
+			
 			<div data-role="footer" data-position="fixed" data-tap-toggle="false" data-transition="none">
 				<div class="bottom-navigation">
 					<div class="setting-popup">
@@ -271,26 +220,6 @@
 								</div>
 							</div>
 							
-							<!-- <div class="bottom-navigation">
-								<div class="row text-align-class">
-									<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoHomePage();">
-										<button class="nav-btn nav-btn5  btn-home"><span class="span-icon"></span><p>Home</p></button>
-									</div>
-									<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="showSurveysByTypeFn(1);">
-										<button class="nav-btn nav-btn6 btn-profile"><span class="span-icon"></span><p>Invitation</p></button>
-									</div>
-									<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="showSurveysByTypeFn(2);">
-										<button class="nav-btn nav-btn1 btn-password"><span class="span-icon"></span><p>Live Surveys</p></button>
-									</div>
-									<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="showSurveysByTypeFn(3);">
-										<button class="nav-btn nav-btn7 btn-setting"><span class="span-icon"></span><p>Completed</p></button>
-									</div>
-									<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="showSurveysByTypeFn(4);">
-										<button class="nav-btn nav-btn8 btn-setting"><span class="span-icon"></span><p>Missed</p></button>
-									</div>
-								</div>
-							</div> -->
-							
 						</div>
 				</div>
 			</div>
@@ -314,8 +243,348 @@
 			</div>
 		</div>
 		
-		<!-- Registration Page -->
+		<!-- Show Qual TDI Survey Page -->
+		<div id="showQualTdiSurveys" data-role="page" class="show-qualtdi-surveys">
+			<div data-role="header" onclick="commonFn();" data-position="fixed">
+				<div id="header" class="header-logo">
+					<img  src="img/logo.png" id="logo" alt="Glocal Panel" /> 
+				</div>
+			</div>
+			
+			<div role="main" class="ui-content">	
+				<div class="st-background">
+						<div id="showQualTdiSurveysPageId">
+							
+							<div class="row" onclick="commonFn();">
+								<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<div class="box">
+										<div class="row qualTdiSurveysClass survey-details">
+											<ul class="survey-list-view">
+												<li><p>No surveys found.</p></li>
+												
+												   <li class="box">
+												      <div class="list-border"></div>
+												      <i class="fa fa-calendar-o"></i>
+												      <div class="survey-content">
+												         <i class="fa fa-arrow-right"></i>
+												         <div class="arrow"></div>
+												         <p id="projectName">Project_CMQC<span id="surveyNumber"> (P1700020201) </span></p>
+												         
+												         <!-- DOCTOR -->
+														<div class="button-row qual-link-div">
+															<a href="#" class="ui-shadow ui-corner-all ui-link qual-link qual-link-book" 
+																data-custom="" data-intstatus="0" onclick="qualTdiActionsFn(this);">Book</a>
+																
+															<a href="#" class="ui-shadow ui-corner-all ui-link qual-link qual-link-accept" 
+																data-custom="" data-intstatus="1" onclick="qualTdiActionsFn(this);">Accept</a>
+																
+															<a href="#" class="ui-shadow ui-corner-all ui-link qual-link qual-link-reject" 
+																data-custom="" data-intstatus="4" onclick="qualTdiActionsFn(this);">Reject</a>
+															
+															<a href="#" class="ui-shadow ui-corner-all ui-link qual-link qual-link-reschedule" 
+																data-custom="" data-intstatus="6" onclick="qualTdiActionsFn(this);">Reschedule</a>
+															
+															<a href="#" class="ui-shadow ui-corner-all ui-link qual-link qual-link-noshow" 
+																data-custom="" data-intstatus="2" onclick="qualTdiActionsFn(this);">No Show</a>
+															
+															<a href="#" class="ui-shadow ui-corner-all ui-link qual-link qual-link-feedback" 
+																data-custom="" data-intstatus="7" onclick="qualTdiActionsFn(this);">Feedback</a>
+																
+														</div>
+												         
+												      </div>
+												   </li>
+												   
+												
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+						</div>
+				</div>
+			</div>
+			
+			<div data-role="footer" data-position="fixed" data-tap-toggle="false" data-transition="none">
+				<div class="bottom-navigation">
+					<div class="row text-align-class">
+						<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoHomePage();">
+							<button class="nav-btn nav-btn5 width-class btn-home"><span class="span-icon"></span><p>Home</p></button>
+						</div>
+						
+						<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3">
+							<button class="nav-btn nav-btn6 width-class btn-profile"><span class="span-icon active"></span><p>Qual TDI</p></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		
+		<!-- Show Qual TDI Booking Page -->
+		<div id="showQualTdiSurveysBook" data-role="page" class="show-qualtdi-surveys-book">
+			<div data-role="header" onclick="commonFn();" data-position="fixed">
+				<div id="header" class="header-logo">
+					<img  src="img/logo.png" id="logo" alt="Glocal Panel" /> 
+				</div>
+			</div>
+			
+			<div role="main" class="ui-content">	
+				<div class="st-background">
+					<div id="showQualTdiSurveysBookPageId">
+						
+						<form id="timezoneUpdateForm">
+							<div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group input-label-focus">								
+									<div class="input-group box">
+										<span class="input-group-addon" ></span>	
+										<label for="countryInput" class="control-label">Timezone<em>*</em></label>						  	
+										<select	name="timezoneInput" id="timezoneInput" onchange="onchangeTimezone(0);" data-mini="true" required="required" class="form-control focusClass">
+											<option value="">-- Select Timezone --</option>
+										</select>
+										<div class="validation-place"></div>
+									</div>
+								</div>
+							</div>		
+						</form>	
+						
+						<form id="qualTdiBookingPageForm">
+							<div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
+							
+								<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group input-label-focus">								
+									<div class="input-group box">
+										<span class="input-group-addon" ></span>	
+										<label for="countryInput" class="control-label">Booking Dates<em>*</em></label>						  	
+										<select	name="bookingDateInput" id="bookingDateInput" onchange="onchangeBookingDate(0);" data-mini="true" required="required" class="form-control focusClass">
+											<option value="">-- Select Booking Dates --</option>
+										</select>
+										<div class="validation-place"></div>
+									</div>
+								</div>
+								
+								<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group input-label-focus">								
+									<div class="input-group box">
+										<span class="input-group-addon" ></span>	
+										<label for="countryInput" class="control-label">Slots<em>*</em></label>						  	
+										<select	name="bookingDateSlotInput" id="bookingDateSlotInput" data-mini="true" required="required" class="form-control focusClass">
+											<option value="">-- Select Slot --</option>
+										</select>
+										<div class="validation-place"></div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group input-label-focus">								
+									<div class="input-group box">
+										<span class="input-group-addon" ></span>	
+										<label for="firstNameInput" class="control-label">First Name<em>*</em></label>						  	
+										<input type="text" class="form-control focusClass" data-mini="true" name="firstNameInput" id="firstNameInput" placeholder="First name" required="required" />
+										<div class="validation-place"></div>
+									</div>
+								</div>
+								
+								<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group input-label-focus">								
+									<div class="input-group box">
+										<span class="input-group-addon" ></span>	
+										<label for="middleNameInput" class="control-label">Middle Name</label>						  	
+										<input type="text" class="form-control focusClass" name="middleNameInput" id="middleNameInput" placeholder="Middle name" />
+										<div class="validation-place"></div>
+									</div>
+								</div>
+								
+								<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group input-label-focus">								
+									<div class="input-group box">
+										<span class="input-group-addon" ></span>	
+										<label for="lastNameInput" class="control-label">Last Name<em>*</em></label>						  	
+										<input type="text" class="form-control focusClass" data-mini="true" name="lastNameInput" id="lastNameInput" placeholder="Last name" required="required" />
+										<div class="validation-place"></div>
+									</div>
+								</div>
+								
+								<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group input-label-focus">								
+									<div class="input-group box">
+										<span class="input-group-addon" ></span>	
+										<label for="emailIdInput" class="control-label">Email Id<em>*</em></label>						  	
+										<input type="email" class="form-control focusClass" name="emailIdInput" id="emailIdInput" placeholder="Email Id" />
+										<div class="validation-place"></div>
+									</div>
+								</div>
+								
+								<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group input-label-focus">								
+									<div class="input-group box">
+										<span class="input-group-addon" ></span>	
+										<label for="primaryNumberInput" class="control-label">Cell Number</label>						  	
+										<input type="text" class="form-control focusClass" name="primaryNumberInput" id="primaryNumberInput" placeholder="Telephone number" />
+										<div class="validation-place"></div>
+									</div>
+								</div>
+								
+								<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group input-label-focus">								
+									<div class="input-group box">
+										<span class="input-group-addon" ></span>	
+										<label for="primaryNumberInput" class="control-label">Phone Number</label>						  	
+										<input type="text" class="form-control focusClass" name="primaryNumberInput" id="primaryNumberInput" placeholder="Telephone number" />
+										<div class="validation-place"></div>
+									</div>
+								</div>
+								
+							</div>
+							
+							<div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								<button data-role="button" data-inline="false" data-theme="a" id="submitButton">Book</button>
+							</div>
+							
+						</form>
+						
+					</div>
+				</div>
+			</div>
+			
+			<div data-role="footer" data-position="fixed" data-tap-toggle="false" data-transition="none">
+				<div class="bottom-navigation">
+					<div class="row text-align-class">
+						<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoHomePage();">
+							<button class="nav-btn nav-btn5 width-class btn-home"><span class="span-icon"></span><p>Home</p></button>
+						</div>
+						
+						<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoQualTdiSurveysFn();">
+							<button class="nav-btn nav-btn6 width-class btn-profile"><span class="span-icon active"></span><p>Qual TDI</p></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- Show Qual TDI Reject/Reschedule Page -->
+		<div id="showQualTdiSurveysReject" data-role="page" class="show-qualtdi-surveys-reject">
+			<div data-role="header" onclick="commonFn();" data-position="fixed">
+				<div id="header" class="header-logo">
+					<img  src="img/logo.png" id="logo" alt="Glocal Panel" /> 
+				</div>
+			</div>
+			
+			<div role="main" class="ui-content">	
+				<div class="st-background">
+					<div id="showQualTdiSurveysRejectPageId">
+						
+						<form id="qualTdiRejectPageForm">
+						
+							<div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								<div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<h4>Reject/Cancel Booking</h4>
+								</div>
+								
+								<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group input-label-focus">								
+									<div class="input-group box">
+										<span class="input-group-addon" ></span>	
+										<label for="notesInput" class="control-label">Notes<em>*</em></label>						  	
+										<textarea name="notesInput" id="notesInput" class="form-control focusClass" 
+											rows="10" cols="50" placeholder="Notes" required="required" > </textarea>
+										<div class="validation-place"></div>
+									</div>
+								</div>
+								
+							</div>
+							
+							<div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								<button data-role="button" data-inline="false" data-theme="b" id="submitButton">Cancel Booking</button>
+								<button type="button" data-role="button" data-inline="false" data-theme="a" id="submitButton" onclick="gotoQualTdiSurveysFn()">Back</button>
+							</div>
+							
+						</form>
+						
+					</div>
+				</div>
+			</div>
+			
+			<div data-role="footer" data-position="fixed" data-tap-toggle="false" data-transition="none">
+				<div class="bottom-navigation">
+					<div class="row text-align-class">
+						<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoHomePage();">
+							<button class="nav-btn nav-btn5 width-class btn-home"><span class="span-icon"></span><p>Home</p></button>
+						</div>
+						
+						<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoQualTdiSurveysFn();">
+							<button class="nav-btn nav-btn6 width-class btn-profile"><span class="span-icon active"></span><p>Qual TDI</p></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- Show Qual TDI Feedback Page -->
+		<div id="showQualTdiSurveysFeedback" data-role="page" class="show-qualtdi-surveys-feedback">
+			<div data-role="header" onclick="commonFn();" data-position="fixed">
+				<div id="header" class="header-logo">
+					<img  src="img/logo.png" id="logo" alt="Glocal Panel" /> 
+				</div>
+			</div>
+			
+			<div role="main" class="ui-content">	
+				<div class="st-background">
+					<div id="showQualTdiSurveysFeedbackPageId">
+						
+						<form id="qualTdiFeedbackPageForm">
+							<div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								<div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
+									<h4>Feedback For Booking</h4>
+								</div>
+								
+								<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group input-label-focus">								
+									<div class="input-group box">
+										<span class="input-group-addon" ></span>	
+										<label for="notesInput" class="control-label">Notes<em>*</em></label>						  	
+										<textarea name="notesInput" id="notesInput" 
+											class="form-control focusClass"
+											rows="10" placeholder="Notes" required="required" > </textarea>
+										<div class="validation-place"></div>
+									</div>
+								</div>
+								
+								<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 form-group input-label-focus">								
+									<div class="input-group box">
+										<span class="input-group-addon" ></span>	
+										<label for="feedbackRatingInput" class="control-label">Feedback Rating<em>*</em></label>						  	
+										<select	name="feedbackRatingInput" id="feedbackRatingInput" data-mini="true" required="required" class="form-control focusClass">
+											<option value="5">5</option>
+											<option value="4">4</option>
+											<option value="3">3</option>
+											<option value="2">2</option>
+											<option value="1">1</option>
+										</select>
+										<div class="validation-place"></div>
+									</div>
+								</div>
+								
+							</div>
+							
+							<div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
+								<button data-role="button" data-inline="false" data-theme="a" id="submitButton">Submit</button>
+							</div>
+							
+						</form>
+						
+					</div>
+				</div>
+			</div>
+			
+			<div data-role="footer" data-position="fixed" data-tap-toggle="false" data-transition="none">
+				<div class="bottom-navigation">
+					<div class="row text-align-class">
+						<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoHomePage();">
+							<button class="nav-btn nav-btn5 width-class btn-home"><span class="span-icon"></span><p>Home</p></button>
+						</div>
+						
+						<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoQualTdiSurveysFn();">
+							<button class="nav-btn nav-btn6 width-class btn-profile"><span class="span-icon active"></span><p>Qual TDI</p></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- Registration Page -->
 		<div id="registrationPage" data-role="page" class="registration-page">
 			<div data-role="header" data-position="fixed">
 				<div id="header" class="header-logo">
@@ -418,22 +687,9 @@
 							</div>
 							
 							<div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
-								<!-- <button class="ui-btn st-ui-btn" type="submit" id="submitButton">Submit</button> -->
 								<button data-role="button" data-inline="false" data-theme="a" id="submitButton">Submit</button>
 							</div>
 							
-							<!-- 
-							<div class="ui-grid-a">
-								<div class="ui-block-a log-data-show">
-								<a href="#" class="ui-btn st-ui-btn" id="submitUpdateId" value="Back"
-										data-flag="add" onclick="gotoLoginPage();">Back</a>
-								</div>
-		
-								<div class="ui-block-b">
-									<button class="ui-btn st-ui-btn" type="submit" id="submitButton">Submit</button>
-								</div>
-							</div>
-							 -->
 						</form>
 					</div>
 				</div>
@@ -478,35 +734,6 @@
 								</div>
 							</form>
 							
-							<!-- 
-							<div class="bottom-navigation">
-								<div class="setting-popup">
-									<button  data-role="button" data-inline="false" data-theme="a" onclick="doLogout(this);">
-										<span class=""></span><p>Logout</p>
-									</button>	
-									<button  data-role="button" data-inline="false" data-theme="a" onclick="gotoUnsubscribePage(this);">
-										<span class=""></span><p>Unsubscribe</p>
-									</button>
-									<button  data-role="button" data-inline="false" data-theme="a" onclick="gotoContactUsPage(this);">
-										<span class=""></span><p>Contact Us</p>
-									</button>
-								</div>
-								<div class="row text-align-class">
-									<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoHomePage();">
-										<button class="nav-btn nav-btn5 btn-home"><span class="span-icon"></span><p>Home</p></button>
-									</div>
-									<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="showSurveysByTypeFn(1);">
-										<button class="nav-btn nav-btn1 btn-profile"><span class="span-icon"></span><p>Surveys</p></button>
-									</div>
-									<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoChangePassword();">
-										<button class="nav-btn nav-btn3 btn-password"><span class="span-icon"></span><p>Password</p></button>
-									</div>
-									<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="settingPopupFn();">
-										<button class="nav-btn nav-btn4 btn-setting"><span class="span-icon"></span><p>Setting</p></button>
-									</div>
-								</div>
-							</div>
-							 -->
 						</div>
 				</div>
 			</div>
@@ -643,49 +870,14 @@
 											</select>
 										</div>
 									</div>
-									<!-- <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-										<div class="box">
-											<label for="stateInput"> State </label> 
-											<select	name="stateInput" id="stateInput" data-mini="true" class="form-control">
-												<option value="">--Select--</option>
-											</select>
-										</div>
-									</div> -->
+									
 								</div>
 										
 								<div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12">
-									<!-- <button class="ui-btn st-ui-btn width-class" type="submit" id="submitButton">Submit</button> -->
 									<button data-role="button" data-inline="false" data-theme="a" id="submitButton">Submit</button>
 								</div>
 							</form>
 						
-							<!-- <div class="bottom-navigation">
-								<div class="setting-popup">
-									<button  data-role="button" data-inline="false" data-theme="a" onclick="doLogout(this);">
-										<span class=""></span><p>Logout</p>
-									</button>	
-									<button  data-role="button" data-inline="false" data-theme="a" onclick="gotoUnsubscribePage(this);">
-										<span class=""></span><p>Unsubscribe</p>
-									</button>
-									<button  data-role="button" data-inline="false" data-theme="a" onclick="gotoContactUsPage(this);">
-										<span class=""></span><p>Contact Us</p>
-									</button>
-								</div>
-								<div class="row text-align-class">
-									<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoHomePage();">
-										<button class="nav-btn nav-btn5  btn-home"><span class="span-icon"></span><p>Home</p></button>
-									</div>
-									<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="showSurveysByTypeFn(1)">
-										<button class="nav-btn nav-btn1 btn-profile"><span class="span-icon"></span><p>Surveys</p></button>
-									</div>
-									<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoChangePassword();">
-										<button class="nav-btn nav-btn3 btn-password"><span class="span-icon"></span><p>Password</p></button>
-									</div>
-									<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="settingPopupFn();">
-										<button class="nav-btn nav-btn4 btn-setting"><span class="span-icon"></span><p>Setting</p></button>
-									</div>
-								</div>
-							</div> -->
 						</div>
 				</div>
 			</div>
@@ -764,37 +956,9 @@
 								</div>
 							</div>
 							<div class="row submit-button">
-								<!-- <button class="ui-btn st-ui-btn width-class" type="submit" id="submitButton">Submit</button> -->
 								<button data-role="button" data-inline="false" data-theme="a" id="submitButton">Submit</button>
 							</div>
 						</form>
-						<!-- <div class="bottom-navigation">
-							<div class="setting-popup">
-								<button  data-role="button" data-inline="false" data-theme="a" onclick="doLogout(this);">
-									<span class=""></span><p>Logout</p>
-								</button>	
-								<button  data-role="button" data-inline="false" data-theme="a" onclick="gotoUnsubscribePage(this);">
-									<span class=""></span><p>Unsubscribe</p>
-								</button>
-								<button  data-role="button" data-inline="false" data-theme="a" onclick="gotoContactUsPage(this);">
-									<span class=""></span><p>Contact Us</p>
-								</button>
-							</div>
-							<div class="row text-align-class">
-								<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoHomePage();">
-									<button class="nav-btn nav-btn5  btn-home"><span class="span-icon"></span><p>Home</p></button>
-								</div>
-								<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="showSurveysByTypeFn(1);">
-									<button class="nav-btn nav-btn1 btn-profile"><span class="span-icon"></span><p>Surveys</p></button>
-								</div>
-								<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoShowProfilePage(false, 1);">
-									<button class="nav-btn nav-btn2 btn-password"><span class="span-icon"></span><p>Profile</p></button>
-								</div>
-								<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="settingPopupFn();">
-									<button class="nav-btn nav-btn4 btn-setting"><span class="span-icon"></span><p>Setting</p></button>
-								</div>
-							</div>
-						</div> -->
 						
 					</div>
 				</div>
@@ -856,22 +1020,9 @@
 							</div>
 							
 							<div class="row">
-								<!-- <button class="ui-btn st-ui-btn" type="submit" id="submitButton">Submit</button> -->
 								<button data-role="button" data-inline="false" data-theme="a" id="submitButton">Submit</button>
 							</div>
 							
-							<!-- 
-							<div class="ui-grid-a">
-								<div class="ui-block-a log-data-show">
-									<a href="#" class="ui-btn st-ui-btn" id="submitUpdateId" value="Back"
-										data-flag="add" onclick="gotoLoginPage();" >Back</a>
-								</div>
-		
-								<div class="ui-block-b">
-									<button class="ui-btn st-ui-btn" type="submit" id="submitButton">Submit</button>
-								</div>
-							</div>
-							 -->
 						</form>
 					</div>
 				</div>
@@ -887,9 +1038,6 @@
 			<div role="main" class="ui-content">
 				<div class="st-background">
 					<div id="unsubscribePageId">
-						<!-- <div data-role="header" data-position="fixed">
-							<h1>Unsubscribe</h1>
-						</div> -->
 						<div class="page-heading" onclick="commonFn();">
 							<h1>Unsubscribe</h1>
 						</div>
@@ -919,40 +1067,10 @@
 							</div>
 							
 							<div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12 submitUnsubData">
-								<!-- <a href="#" onclick="unsubscribeConfirmData();" data-inline="false"  data-theme="a" class="ui-btn st-ui-btn width-class" value="Submit"
-										data-flag="add">Submit</a> -->
-									<button data-role="button" data-inline="false" data-theme="a" id="submitButton">Submit</button>	
+								<button data-role="button" data-inline="false" data-theme="a" id="submitButton">Submit</button>	
 							</div>
 						</form>
 						
-						<!-- <div class="bottom-navigation">
-							<div class="setting-popup">
-								<button  data-role="button" data-inline="false" data-theme="a" onclick="doLogout(this);">
-									<span class=""></span><p>Logout</p>
-								</button>	
-								<button  data-role="button" data-inline="false" data-theme="a" onclick="gotoUnsubscribePage(this);">
-									<span class=""></span><p>Unsubscribe</p>
-								</button>
-								<button  data-role="button" data-inline="false" data-theme="a" onclick="gotoContactUsPage(this);">
-									<span class=""></span><p>Contact Us</p>
-								</button>
-							</div>
-							<div class="row text-align-class">
-								<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoHomePage();">
-									<button class="nav-btn nav-btn5  btn-home"><span class="span-icon"></span><p>Home</p></button>
-								</div>
-								
-								<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="showSurveysByTypeFn(1);">
-									<button class="nav-btn nav-btn1 btn-profile"><span class="span-icon"></span><p>Surveys</p></button>
-								</div>
-								<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoShowProfilePage(false, 1);">
-									<button class="nav-btn nav-btn2 btn-password"><span class="span-icon"></span><p>Profile</p></button>
-								</div>
-								<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoChangePassword();">
-									<button class="nav-btn nav-btn3 btn-password"><span class="span-icon"></span><p>Password</p></button>
-								</div>
-							</div>
-						</div> -->
 					</div>
 				</div>
 			</div>
@@ -1016,33 +1134,6 @@
 								</tr>
 							</tbody>
 						</table>
-						<!-- <div class="bottom-navigation">
-							<div class="setting-popup">
-								<button  data-role="button" data-inline="false" data-theme="a" onclick="doLogout(this);">
-									<span class=""></span><p>Logout</p>
-								</button>	
-								<button  data-role="button" data-inline="false" data-theme="a" onclick="gotoUnsubscribePage(this);">
-									<span class=""></span><p>Unsubscribe</p>
-								</button>
-								<button  data-role="button" data-inline="false" data-theme="a" onclick="gotoContactUsPage(this);">
-									<span class=""></span><p>Contact Us</p>
-								</button>
-							</div>
-							<div class="row text-align-class">
-								<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoHomePage();">
-									<button class="nav-btn nav-btn5 btn-home"><span class="span-icon"></span><p>Home</p></button>
-								</div>
-								<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="showSurveysByTypeFn(1);">
-									<button class="nav-btn nav-btn1 btn-profile"><span class="span-icon"></span><p>Surveys</p></button>
-								</div>
-								<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoShowProfilePage(false, 1);">
-									<button class="nav-btn nav-btn2 btn-password"><span class="span-icon"></span><p>Profile</p></button>
-								</div>
-								<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="settingPopupFn();">
-									<button class="nav-btn nav-btn4 btn-setting"><span class="span-icon"></span><p>Setting</p></button>
-								</div>
-							</div>
-						</div> -->
 					</div>
 				</div>
 			</div>
@@ -1110,34 +1201,6 @@
 								</div>
 							</div>
 						</form>
-						<!-- <div class="bottom-navigation">
-							<div class="setting-popup">
-								<button  data-role="button" data-inline="false" data-theme="a" onclick="doLogout(this);">
-									<span class=""></span><p>Logout</p>
-								</button>	
-								<button  data-role="button" data-inline="false" data-theme="a" onclick="gotoUnsubscribePage(this);">
-									<span class=""></span><p>Unsubscribe</p>
-								</button>
-								<button  data-role="button" data-inline="false" data-theme="a" onclick="gotoContactUsPage(this);">
-									<span class=""></span><p>Contact Us</p>
-								</button>
-							</div>
-							<div class="row text-align-class">
-								<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoHomePage();">
-									<button class="nav-btn nav-btn5  btn-home"><span class="span-icon"></span><p>Home</p></button>
-								</div>
-								
-								<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="showSurveysByTypeFn(1);">
-									<button class="nav-btn nav-btn1 btn-profile"><span class="span-icon"></span><p>Surveys</p></button>
-								</div>
-								<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoShowProfilePage(false, 1);">
-									<button class="nav-btn nav-btn2 btn-password"><span class="span-icon"></span><p>Profile</p></button>
-								</div>
-								<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoChangePassword();">
-									<button class="nav-btn nav-btn3 btn-password"><span class="span-icon"></span><p>Password</p></button>
-								</div>
-							</div>
-						</div> -->
 					</div>
 				</div>
 			</div>
@@ -1203,12 +1266,7 @@
 										<input type="email" class="form-control focusClass" data-mini="true" name="emailIdInput" id="emailIdInput" placeholder="Email Id" required="required" />
 										<div class="validation-place"></div>
 									</div>
-									<!-- <div class="form-group input-label-focus">
-										<label for="telephoneNumberInput" class="control-label">Telephone no.<em>*</em> </label>
-										<span class="input-group-addon" id="basic-addon1"></span>			
-										<input type="number" class="form-control focusClass" data-mini="true" name="telephoneNumberInput" id="telephoneNumberInput" placeholder="Telephone No." required="required" />
-										<div class="validation-place"></div>
-									</div> -->
+									
 									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group input-label-focus countryDiv">
 										<label for="countryInput" class="control-label">Country<em>*</em></label>	
 										<span class="input-group-addon" ></span>							  	
@@ -1218,13 +1276,6 @@
 										<div class="validation-place"></div>
 									</div>
 									
-									
-									<!-- <div class="form-group input-label-focus">
-										<label for="subjectInput" class="control-label">Subject<em>*</em> </label>
-										<span class="input-group-addon" id="basic-addon1"></span>			
-										<input type="text" class="form-control focusClass" data-mini="true" name="subjectInput" id="subjectInput" placeholder="Subject" required="required" />
-										<div class="validation-place"></div>
-									</div> -->
 									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-group input-label-focus">
 										<label for="emailBodyInput" class="control-label">Message<em>*</em> </label>
 										<span class="input-group-addon"></span>			
@@ -1237,37 +1288,11 @@
 								</div>
 							</div>
 						</form>
-						<!-- <div class="bottom-navigation contactUs-Navigator">
-							<div class="setting-popup">
-								<button  data-role="button" data-inline="false" data-theme="a" onclick="doLogout(this);">
-									<span class=""></span><p>Logout</p>
-								</button>	
-								<button  data-role="button" data-inline="false" data-theme="a" onclick="gotoUnsubscribePage(this);">
-									<span class=""></span><p>Unsubscribe</p>
-								</button>
-								<button  data-role="button" data-inline="false" data-theme="a" onclick="gotoContactUsPage(this);">
-									<span class=""></span><p>Contact Us</p>
-								</button>
-							</div>
-							<div class="row text-align-class">
-								<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoHomePage();">
-									<button class="nav-btn nav-btn5  btn-home"><span class="span-icon"></span><p>Home</p></button>
-								</div>
-								
-								<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="showSurveysByTypeFn(1);">
-									<button class="nav-btn nav-btn1 btn-profile"><span class="span-icon"></span><p>Surveys</p></button>
-								</div>
-								<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoShowProfilePage(false, 1);">
-									<button class="nav-btn nav-btn2 btn-password"><span class="span-icon"></span><p>Profile</p></button>
-								</div>
-								<div class="col-gp col-xs-3 col-sm-3 col-md-3 col-lg-3" onclick="gotoChangePassword();">
-									<button class="nav-btn nav-btn3 btn-password"><span class="span-icon"></span><p>Password</p></button>
-								</div>
-							</div>
-						</div> -->
+						
 					</div>
 				</div>
 			</div>
+			
 			<div data-role="footer" data-position="fixed" data-tap-toggle="false" data-transition="none">
 				<div class="bottom-navigation contactUs-Navigator">
 					<div class="setting-popup">
@@ -1303,20 +1328,13 @@
 	</body>
 	
 	<script type="text/javascript" src="cordova.js"></script>
-	<!-- PhoneGap Plugin for Notification -->
-	<!-- <script type="text/javascript" src="libs/push.js"></script> -->
-	<!-- <script type="text/javascript" src="phonegap.js"></script> -->
 	<script type="text/javascript" src="libs/jquery.min.js"></script>
 	<script type="text/javascript" src="libs/jquery.validate.min.js"></script>
 	<script type="text/javascript" src="libs/fastclick.min.js"></script>
 	<script type="text/javascript" src="libs/PushNotification.js"></script>
-	<!-- <script type="text/javascript" src="libs/push.js"></script> -->
-	<!-- <script type="text/javascript" charset="utf-8" src="PushNotification.js"></script> -->
 	<script type="text/javascript"
 		src="libs/jQueryMobile/jquery.mobile-1.4.5.min.js"></script>
 	<script type="text/javascript" src="js/index.js"></script>
-	<!-- <script type="text/javascript" src="js/bootstrap.min.js"></script> -->
-	
 	<script type="text/javascript">
 		app.initialize();
 	</script>

@@ -450,10 +450,9 @@ $(document).on("pagecreate", function() {
 });
 */
 
-//var appUrl = 'http://122.166.219.146:8031/StavyahSurvey/mobileApp/appEntry.do'; // Local Test System GlocalMind
-	var appUrl = 'http://192.168.1.13:8080/StavyahSurvey/mobileApp/appEntry.do'; // Local Test System
-//var appUrl = 'http://106.51.71.198:8031/StavyahSurvey/mobileApp/appEntry.do'; // GlocalPanel Test System
-// var appUrl = 'http://www.glocalpanel.com/mobileApp/appEntry.do'; // GlocalPanel Live
+ var appUrl = 'http://192.168.1.13:8080/StavyahSurvey/mobileApp/appEntry.do'; // Local Test System
+// var appUrl = 'http://106.51.71.198:8031/StavyahSurvey/mobileApp/appEntry.do'; // GlocalPanel Test System
+//var appUrl = 'http://www.glocalpanel.com/mobileApp/appEntry.do'; // GlocalPanel Live
 var appRequiresWiFi='This action requires internet.';
 var serverBusyMsg='Server is busy, please try again later.';
 var mData={};
@@ -570,7 +569,7 @@ var app = {
 			});
 
 			push.on('registration', function(data) {
-			    alert('data.registrationId : '+data.registrationId);
+			    //alert('data.registrationId : '+data.registrationId);
 			    window.localStorage["gcmregistrationId"] = data.registrationId;
 			});
 
@@ -1801,6 +1800,22 @@ function commonSuccessCBFn(data){
 		}else if(actionType == 'sendContactUsDetails'){
 			sendContactUsDetailsFn(actionResponse);
 		}
+		// Qual TDI Requests
+		else if (actionType == 'qualTDISurveyList') {
+			qualTDISurveyListSuccessCB(actionResponse);
+		} else if (actionType == 'qualTDITimezoneList') {
+			qualTDITimezoneListSuccessCB(actionResponse);
+		} else if (actionType == 'qualTDIPanelistTimezoneCheck') {
+			qualTDIPanTimezoneCheckSuccessCB(actionResponse);
+		} else if (actionType == 'surveyBookingDates') {
+			surveyBookingDatesSuccessCB(actionResponse);
+		} else if (actionType == 'surveyBookingDateSlots') {
+			surveyBookingDateSlotsSuccessCB(actionResponse);
+		} else if (actionType == 'qualTDISurveyBookingSave') {
+			qualTDIBookingSaveSuccessCB(actionResponse);
+		} else if (actionType == 'qualTDISurveyIntStatusUpdate') {
+			qualTDIIntStatusUpdateSuccessCB(actionResponse);
+		}
 	}else{
 		hideModal();
 		var message = responseData['message'];
@@ -1827,7 +1842,7 @@ function commonSuccessCBFn(data){
 }
 
 // refreshSelect
-function refreshSelect(ele,currentValue){
+function refreshSelect(ele,currentValue) {
 	// Grabbing a select field
 	var el = $(ele);
 	// Select the relevant option, de-select any others
@@ -1838,7 +1853,7 @@ function refreshSelect(ele,currentValue){
 	el.selectmenu("refresh", true);
 }
 
-function timeCatSelectRefresh(){
+function timeCatSelectRefresh() {
 	var el = $('#timeCat');
 	el.find('option').remove().end();
 	var currentValue;
@@ -3322,7 +3337,6 @@ function showSurveysByTypeFn(type){
 	gotoSurveysPage();
 }
 
-
 var inAppBrowserRef;
 function openInAppBrowser(thiss) {
 	var urllink=$(thiss).data('urllink');
@@ -3434,7 +3448,7 @@ function handleExternalURLs() {
     else if (device.platform.toUpperCase() === 'IOS') {
         $(document).on('click', 'a[href^="http"]', function (e) {
             var url = $(this).attr('href');
-            alert('Hi...................... '+url);
+            //alert('Hi...................... '+url);
             window.open(url, '_system');
             e.preventDefault();
         });
@@ -3607,3 +3621,107 @@ function sendContactUsDetailsFn(responseData){
 	}
 	navigator.notification.alert(message,alertConfirm,appName,['Ok']);
 }
+
+/* QUAL TDI */
+function qualTdiActionsFn(thiss) {
+	var intStatus = parseInt($(thiss).data('intstatus'));
+	switch (intStatus) {
+	case 0: // Book
+		$.mobile.changePage('#showQualTdiSurveysBook', { transition: "slide" });
+	
+		break;
+	
+	case 1: // Accept
+			// TODO Action
+		break;
+	
+	case 4: // Reject
+		$.mobile.changePage('#showQualTdiSurveysReject', { transition: "slide" });
+		break;
+	
+	case 6: // Reschedule
+		$.mobile.changePage('#showQualTdiSurveysReject', { transition: "slide" });
+		break;
+	
+	case 2: // Noshow
+		$.mobile.changePage('#showQualTdiSurveysReject', { transition: "slide" });
+		break;
+	
+	case 7: // Feedback
+		$.mobile.changePage('#showQualTdiSurveysFeedback', { transition: "slide" });
+		break;
+
+	default:
+		break;
+	}
+}
+
+function gotoQualTdiSurveysFn() {
+	$('.show-qualtdi-surveys .nav-btn6 span').addClass('active');
+	
+	$(".setting-popup").hide();
+	if(connectionType=="Unknown connection" || connectionType=="No network connection"){
+		navigator.app.exitApp();
+		//return;
+	}
+	$(".setting-popup").hide();
+	$.mobile.changePage('#showQualTdiSurveys',{ transition: "slide"});
+}
+
+/*
+var dataAction = "qualTDISurveyList";
+var dataAction = "qualTDITimezoneList";
+var dataAction = "qualTDIPanelistTimezoneCheck";
+var dataAction = "surveyBookingDates";
+var dataAction = "surveyBookingDateSlots";
+var dataAction = "qualTDISurveyBookingSave";
+var dataAction = "qualTDISurveyIntStatusUpdate";
+*/
+function qualTDISurveyList(){
+	var dataToSend = {};
+	var dataActionType = 'qualTDISurveyList';
+	commonUrlToCallServer(JSON.stringify(dataToSend), dataActionType, JSON.stringify(loginData));
+}
+
+function qualTDITimezoneList(){
+	var dataToSend = {};
+	var dataActionType = 'qualTDITimezoneList';
+	commonUrlToCallServer(JSON.stringify(dataToSend), dataActionType, JSON.stringify(loginData));
+}
+
+function qualTDIPanelistTimezoneCheck(){
+	var dataToSend = {};
+	dataToSend['smid'] = 0;
+	var dataActionType = 'qualTDIPanelistTimezoneCheck';
+	commonUrlToCallServer(JSON.stringify(dataToSend), dataActionType, JSON.stringify(loginData));
+}
+
+function surveyBookingDates(){
+	var dataToSend = {};
+	// dataToSend['type'] = countryType;
+	var dataActionType = 'surveyBookingDates';
+	commonUrlToCallServer(JSON.stringify(dataToSend), dataActionType, JSON.stringify(loginData));
+}
+
+function surveyBookingDateSlots(){
+	var dataToSend = {};
+	dataToSend['smid'] = 0;
+	dataToSend['date'] = 0;
+	var dataActionType = 'surveyBookingDateSlots';
+	commonUrlToCallServer(JSON.stringify(dataToSend), dataActionType, JSON.stringify(loginData));
+}
+
+function qualTDISurveyBookingSave(dataToSend){
+	// var dataToSend = {};
+	var dataActionType = 'qualTDISurveyBookingSave';
+	commonUrlToCallServer(JSON.stringify(dataToSend), dataActionType, JSON.stringify(loginData));
+}
+
+function qualTDISurveyIntStatusUpdate(){
+	var dataToSend = {};
+	dataToSend['intStatus'] = 0;
+	dataToSend['statusNotes'] = 0;
+	var dataActionType = 'qualTDISurveyIntStatusUpdate';
+	commonUrlToCallServer(JSON.stringify(dataToSend), dataActionType, JSON.stringify(loginData));
+}
+
